@@ -11,8 +11,10 @@ public class PokerTest extends TestCase {
 	public void testCardcount() {
 		PokerTest test = new PokerTest();
 		//The first test is to test the case that all card input is Spade.
-		String[] in1 = {"S2","S3","S4","S5","S6"};//The input for first test
-		int[] er1 = {5,0,0,0};//The output for first test
+		//The input for first test
+		String[] in1 = {"S2","S3","S4","S5","S6"};
+		//The expected result for first test
+		int[] er1 = {5,0,0,0};
 		assertEquals(er1,test.cardCount(in1));
 		
 		//The second test is to test the case that most card has different color
