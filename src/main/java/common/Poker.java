@@ -109,4 +109,8 @@ public class Poker {
 		game.readCard(line);
 		game.drawCard();
 	}
+
+	public String Analyse(int[] inc, int[] inn) {
+		return null;
+	}
 }

@@ -29,11 +29,17 @@ public class PokerTest extends TestCase {
 			assertEquals(expected[i].number,test.card_buffer[i].number);
 		}
 	}
-	public void testRank() {	
-		
+	public void testAnalyse() {	
+		Poker test = new Poker();
+		//Case 1, one card from straight flush
+		int[] inc1 = {0,5,0,0};
+		int[] inn1 = {1,1,0,1,1,1,0,0,0,0,0,0,0};
+		//The return value is how much should we change, and the index to be changed. In this case it is chance 1 card, the index is 5.
+		int[] er1 = {1,5};
 	}
 	//The method cardcount() is to count how many of each color of card is on hand.
 	public void testCardcount() {
+
 		Poker test = new Poker();
 		//The first test is to test the case that all card input is Spade.
 		//The input for first test
