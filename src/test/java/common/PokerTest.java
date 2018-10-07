@@ -1,5 +1,7 @@
 package common;
 
+import java.io.IOException;
+
 import junit.framework.TestCase;
 
 public class PokerTest extends TestCase {
@@ -29,6 +31,30 @@ public class PokerTest extends TestCase {
 			assertEquals(expected[i].number,test.card_buffer[i].number);
 		}
 	}
+	public void testinitialize() {
+		Poker test = new Poker();
+		//There should be no card when the game is started
+		assertEquals(test.num_card,0);
+		try {
+			test.initializegame();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//There should be 52 cards in the buffer when the game is initialized.
+		assertEquals(test.num_card,52);
+		
+		test.countCard(test.card_buffer);
+		//There should be 13 cards for each color, 4 cards for each number
+		int[] erc = {13,13,13,13};
+		int[] ern = {4,4,4,4,4,4,4,4,4,4,4,4,4};
+		for(int i = 0; i < erc.length;i++) {
+			assertEquals(erc[i],test.cardcolorcount[i]);
+		}
+		for(int i = 0; i < ern.length;i++) {
+			assertEquals(ern[i],test.cardnumbercount[i]);
+		}
+	}
 	public void testAnalyse() {	
 		Poker test = new Poker();
 		//Case 1, one card from straight flush
@@ -36,6 +62,13 @@ public class PokerTest extends TestCase {
 		int[] inn1 = {1,1,0,1,1,1,0,0,0,0,0,0,0};
 		//The return value is how much should we change, and the index to be changed. In this case it is chance 1 card, the index is 5.
 		int[] er1 = {1,5};
+		
+
+		//Case 2, one card from straight flush
+		int[] inc2 = {0,5,0,0};
+		int[] inn2 = {1,1,0,1,1,1,0,0,0,0,0,0,0};
+		//The return value is how much should we change, and the index to be changed. In this case it is chance 1 card, the index is 5.
+		int[] er2 = {1,5};
 	}
 	//The method cardcount() is to count how many of each color of card is on hand.
 	public void testCardcount() {

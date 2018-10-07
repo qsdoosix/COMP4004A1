@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Poker {
 	//Because the player won't change more than 4 cards at a time, so 18 cards should be enough in the worse case. 
-	Card[] card_buffer=new Card[18];
+	Card[] card_buffer=new Card[52];
 	//The hand for both player
 	Card[] player_hand= new Card[5];
 	Card[] enemy_hand = new Card[5];
@@ -42,7 +42,18 @@ public class Poker {
 		}
 	}
 	
-	public void initializegame() {
+	public void initializegame() throws IOException {
+		//Load cards from file
+		File file = new File("src/main/resources/Cards1.txt");
+		BufferedReader br = new BufferedReader(new FileReader(file));
+	    String line= br.readLine();
+		if(line==null) {
+			//Something went wrong
+			System.out.println("Empty file");
+			System.exit(-1);
+		}
+		readCard(line);
+		br.close();
 		//Give player 5 cards for AI to beat.
 		for(int i = 0; i < 5;i++) {
 			player_hand[i]=drawCard();
@@ -85,32 +96,15 @@ public class Poker {
 		}
 		cardnumbercount=cnc;
 		cardcolorcount=ccc;
-		for(int i = 0; i < cardnumbercount.length;i++) {
-			System.out.print(cardnumbercount[i]+ ", ");
-		}
-		System.out.println();
-		for(int i = 0; i < cardcolorcount.length;i++) {
-			System.out.print(cardcolorcount[i]+ ", ");
-		}
-		System.out.println();
 	}
 	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		File file = new File("src/main/resources/Cards1.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file));
-	    String line= br.readLine();
-		if(line==null) {
-			//Something went wrong
-			System.out.println("Empty file");
-			System.exit(-1);
-		}
 		Poker game = new Poker();
-		game.readCard(line);
-		game.drawCard();
+		game.initializegame();
 	}
 
-	public String Analyse(int[] inc, int[] inn) {
+	public int[] Analyse(int[] inc, int[] inn) {
 		return null;
 	}
 }
