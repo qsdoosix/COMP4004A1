@@ -1,3 +1,4 @@
+package common;
 import java.io.*;
 
 public class Poker {
@@ -10,7 +11,7 @@ public class Poker {
 	public Poker(){
 	}
 	
-	//Interpret the input line to cards and store into the card_buffer;
+	//Interpret the input line to cards and store into the card_buffer
 	public void readCard(String line) {
 		//Split the input by comma
 		String[] input = line.split(",");
@@ -19,7 +20,7 @@ public class Poker {
 			int n;			
 			if(input[i].charAt(1)=='A') {
 				n=1;
-			}else if(input[i].charAt(1)=='0') {
+			}else if(input[i].charAt(1)=='0') {//Use 0 to represent 10 to keep it simple
 				n=10;
 			}else if(input[i].charAt(1)=='J') {
 				n=11;
@@ -28,6 +29,7 @@ public class Poker {
 			}else if(input[i].charAt(1)=='K') {
 				n=13;
 			}else {
+				//In this code '1' and 'A' is both considered as Ace, as it won't cause any confusion.
 				n=Character.getNumericValue(input[i].charAt(1));
 			}
 			card_buffer[i]=new Card(input[i].charAt(0),n);
