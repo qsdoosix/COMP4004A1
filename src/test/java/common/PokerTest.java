@@ -39,13 +39,37 @@ public class PokerTest extends TestCase {
 		//The input for first test
 		Card[] in1 = {new Card('S',1),new Card('S',2),new Card('S',3),new Card('S',4),new Card('S',5)};
 		//The expected result for first test
+		//The numbers are Club, Heart, Spade, Diamond
 		int[] erc1 = {0,0,5,0};//The result for color, which has 5 spades
 		int[] ern1 = {1,1,1,1,1,0,0,0,0,0,0,0,0};//The result for number, which has one '1', one '2', one '3' and so on.
 		//Count the card in the poker
 		test.countCard(in1);
+		
+		//Test case 1, All cards are in same color
 		for(int i = 0; i < test.num_card;i++) {
 			assertEquals(erc1[i],test.cardcolorcount[i]);
 			assertEquals(ern1[i],test.cardnumbercount[i]);
+		}
+		
+		//Test case 2, 4 cards with different color
+		Card[] in2 = {new Card('S',1),new Card('H',1),new Card('D',1),new Card('C',1),new Card('S',10)};
+		test.countCard(in2);
+		int[] erc2 = {1,1,2,1};
+		int[] ern2 = {4,0,0,0,0,0,0,0,0,1,0,0,0};
+		for(int i = 0; i < test.num_card;i++) {
+			assertEquals(erc2[i],test.cardcolorcount[i]);
+			assertEquals(ern2[i],test.cardnumbercount[i]);
+		}
+		
+
+		//Test case 3, 2 cards with same color and 3 cards with same color
+		Card[] in3 = {new Card('S',6),new Card('S',7),new Card('C',8),new Card('S',9),new Card('C',9)};
+		test.countCard(in3);
+		int[] erc3 = {2,0,3,0};
+		int[] ern3 = {0,0,0,0,0,1,1,1,2,0,0,0,0};
+		for(int i = 0; i < test.num_card;i++) {
+			assertEquals(erc3[i],test.cardcolorcount[i]);
+			assertEquals(ern3[i],test.cardnumbercount[i]);
 		}
 	}
 }
