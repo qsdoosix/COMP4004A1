@@ -42,21 +42,57 @@ public class Poker {
 		}
 	}
 	
-	public void drawCard() {
+	public void initializegame() {
 		//Give player 5 cards for AI to beat.
-		for(int i = card_index; i < 5;i++) {
-			player_hand[i]=card_buffer[i];
-			card_index++;
+		for(int i = 0; i < 5;i++) {
+			player_hand[i]=drawCard();
 			}
 		//Give AI 5 cards
-		for(int i = card_index; i < 5;i++) {
-			enemy_hand[i]=card_buffer[i];
-			card_index++;
+		for(int i = 0; i < 5;i++) {
+			enemy_hand[i]=drawCard();
 			}
 	}
 	
+	public Card drawCard() {
+		card_index++;
+		return card_buffer[card_index-1];
+	}
+	
 	public void countCard(Card[] hand) {
+		int[] ccc = {0,0,0,0};//The temporary array of color counter
+		int[] cnc = {0,0,0,0,0,0,0,0,0,0,0,0,0};//The temporary array of number counter
 		
+		for(int i = 0; i < hand.length;i++) {
+			switch(hand[i].color) {
+				case 'C':{
+					ccc[0]++;
+					break;
+				}
+				case 'H':{
+					ccc[1]++;
+					break;
+				}
+				case 'S':{
+					ccc[2]++;
+					break;
+				}
+				case 'D':{
+					ccc[3]++;
+					break;
+				}
+			}
+			cnc[hand[i].number-1]++;
+		}
+		cardnumbercount=cnc;
+		cardcolorcount=ccc;
+		for(int i = 0; i < cardnumbercount.length;i++) {
+			System.out.print(cardnumbercount[i]+ ", ");
+		}
+		System.out.println();
+		for(int i = 0; i < cardcolorcount.length;i++) {
+			System.out.print(cardcolorcount[i]+ ", ");
+		}
+		System.out.println();
 	}
 	
 	public static void main(String[] args) throws Exception {

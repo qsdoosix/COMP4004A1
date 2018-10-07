@@ -46,8 +46,10 @@ public class PokerTest extends TestCase {
 		test.countCard(in1);
 		
 		//Test case 1, All cards are in same color
-		for(int i = 0; i < test.num_card;i++) {
+		for(int i = 0; i < erc1.length;i++) {
 			assertEquals(erc1[i],test.cardcolorcount[i]);
+		}
+		for(int i = 0; i < ern1.length;i++) {
 			assertEquals(ern1[i],test.cardnumbercount[i]);
 		}
 		
@@ -56,8 +58,10 @@ public class PokerTest extends TestCase {
 		test.countCard(in2);
 		int[] erc2 = {1,1,2,1};
 		int[] ern2 = {4,0,0,0,0,0,0,0,0,1,0,0,0};
-		for(int i = 0; i < test.num_card;i++) {
+		for(int i = 0; i < erc2.length;i++) {
 			assertEquals(erc2[i],test.cardcolorcount[i]);
+		}
+		for(int i = 0; i < ern2.length;i++) {
 			assertEquals(ern2[i],test.cardnumbercount[i]);
 		}
 		
@@ -67,8 +71,10 @@ public class PokerTest extends TestCase {
 		test.countCard(in3);
 		int[] erc3 = {2,0,3,0};
 		int[] ern3 = {0,0,0,0,0,1,1,1,2,0,0,0,0};
-		for(int i = 0; i < test.num_card;i++) {
+		for(int i = 0; i < erc3.length;i++) {
 			assertEquals(erc3[i],test.cardcolorcount[i]);
+		}
+		for(int i = 0; i < ern3.length;i++) {
 			assertEquals(ern3[i],test.cardnumbercount[i]);
 		}
 	}
