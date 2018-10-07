@@ -7,6 +7,11 @@ public class Poker {
 	//The hand for both player
 	Card[] player_hand= new Card[5];
 	Card[] enemy_hand = new Card[5];
+	int card_index=0;
+	int num_card=0;
+	
+	int[] cardnumbercount = new int[13];
+	int[] cardcolorcount = new int[4];
 	
 	public Poker(){
 	}
@@ -14,10 +19,10 @@ public class Poker {
 	//Interpret the input line to cards and store into the card_buffer
 	public void readCard(String line) {
 		//Split the input by comma
-		String[] input = line.split(",");
+		String[] input = line.split(" ");
 		for(int i =0; i < input.length;i++) {
 			//System.out.println(input[i]);
-			int n;			
+			int n;
 			if(input[i].charAt(1)=='A') {
 				n=1;
 			}else if(input[i].charAt(1)=='0') {//Use 0 to represent 10 to keep it simple
@@ -33,7 +38,25 @@ public class Poker {
 				n=Character.getNumericValue(input[i].charAt(1));
 			}
 			card_buffer[i]=new Card(input[i].charAt(0),n);
+			num_card++;
 		}
+	}
+	
+	public void drawCard() {
+		//Give player 5 cards for AI to beat.
+		for(int i = card_index; i < 5;i++) {
+			player_hand[i]=card_buffer[i];
+			card_index++;
+			}
+		//Give AI 5 cards
+		for(int i = card_index; i < 5;i++) {
+			enemy_hand[i]=card_buffer[i];
+			card_index++;
+			}
+	}
+	
+	public void countCard(Card[] hand) {
+		
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -48,5 +71,6 @@ public class Poker {
 		}
 		Poker game = new Poker();
 		game.readCard(line);
+		game.drawCard();
 	}
 }

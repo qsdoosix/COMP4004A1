@@ -24,7 +24,7 @@ public class PokerTest extends TestCase {
 		expected[13]=new Card('D',13);
 		//Here I read 14 cards, containing 4 colors and all 13 possible numbers (A and 1 are both tested)
 		//So this test has covered all possible situations.
-		for(int i = 0; i < 14;i++) {
+		for(int i = 0; i < test.num_card;i++) {
 			assertEquals(expected[i].color,test.card_buffer[i].color);
 			assertEquals(expected[i].number,test.card_buffer[i].number);
 		}
@@ -37,14 +37,15 @@ public class PokerTest extends TestCase {
 		Poker test = new Poker();
 		//The first test is to test the case that all card input is Spade.
 		//The input for first test
-		String[] in1 = {"S2","S3","S4","S5","S6"};
+		Card[] in1 = {new Card('S',1),new Card('S',2),new Card('S',3),new Card('S',4),new Card('S',5)};
 		//The expected result for first test
-		int[] er1 = {5,0,0,0};
-		//assertEquals(er1,test.cardCount(in1));
-		
-		//The second test is to test the case that most card has different color
-		String[] in2 = {"S5","H3","C4","D5","D6"};
-		int[] er2 = {1,1,2,1};
-		//assertEquals(er2,test.cardCount(in2));
+		int[] erc1 = {0,0,5,0};//The result for color, which has 5 spades
+		int[] ern1 = {1,1,1,1,1,0,0,0,0,0,0,0,0};//The result for number, which has one '1', one '2', one '3' and so on.
+		//Count the card in the poker
+		test.countCard(in1);
+		for(int i = 0; i < test.num_card;i++) {
+			assertEquals(erc1[i],test.cardcolorcount[i]);
+			assertEquals(ern1[i],test.cardnumbercount[i]);
+		}
 	}
 }
