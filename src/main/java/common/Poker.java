@@ -58,15 +58,30 @@ public class Poker {
 		for(int i = 0; i < 5;i++) {
 			player_hand[i]=drawCard();
 			}
+		player_hand=sortArray(player_hand);
 		//Give AI 5 cards
 		for(int i = 0; i < 5;i++) {
 			enemy_hand[i]=drawCard();
 			}
+		enemy_hand=sortArray(enemy_hand);
 	}
 	
 	public Card drawCard() {
 		card_index++;
 		return card_buffer[card_index-1];
+	}
+	
+	public Card[] sortArray(Card[] in) {
+		//A helper method to sort the hands using bubble sort
+		for(int i = 0; i<in.length-1; i++) {
+			if(in[i].compareTo(in[i+1])>0) {
+				Card t = in[i];
+				in[i]=in[i+1];
+				in[i+1]=t;
+				i=-1;
+			}
+		}
+		return in;
 	}
 	
 	public void countCard(Card[] hand) {
