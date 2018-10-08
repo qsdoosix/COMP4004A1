@@ -135,6 +135,10 @@ public class Poker {
 	public int[] Analyse(Card[] in) {
 		//To analyse the input card (Should be 5 sorted cards) and decide what to do (Change or not)
 		countCard(in);
+		int max_color;
+		boolean ctf=false;//If the hand is Close To Flush
+		boolean ct4=false;//If the hand is Close To 4 of a kind
+		
 		//Case 1:If the input is better than straight, then do nothing 
 		for(int i = 0; i<cardnumbercount.length;i++) {
 			//If there are 4 cards with same number
@@ -147,6 +151,9 @@ public class Poker {
 			//If there are 5 cards with same color
 			if(cardcolorcount[i]>=5) {
 				return new int[]{0};
+			}
+			if(cardcolorcount[i]==4) {
+				
 			}
 		}
 		return null;
