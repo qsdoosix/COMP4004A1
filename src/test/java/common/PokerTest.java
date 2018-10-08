@@ -78,18 +78,32 @@ public class PokerTest extends TestCase {
 	
 	public void testAnalyse() {	
 		Poker test = new Poker();
-		//Case 1, one card from straight flush
-		int[] inc1 = {0,5,0,0};
-		int[] inn1 = {1,1,0,1,1,1,0,0,0,0,0,0,0};
-		//The return value is how much should we change, and the index to be changed. In this case it is chance 1 card, the index is 5.
-		int[] er1 = {1,5};
+		//Case 1, one card from straight flush by the end
+		test.enemy_hand[0] = new Card('H',4);
+		test.enemy_hand[1] = new Card('H',2);
+		test.enemy_hand[2] = new Card('H',3);
+		test.enemy_hand[3] = new Card('H',5);
+		test.enemy_hand[4] = new Card('S',9);
+		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
+		int[] er1 = {1,4};
 		
 
-		//Case 2, one card from straight flush
-		int[] inc2 = {0,5,0,0};
-		int[] inn2 = {1,1,0,1,1,1,0,0,0,0,0,0,0};
-		//The return value is how much should we change, and the index to be changed. In this case it is chance 1 card, the index is 5.
-		int[] er2 = {1,5};
+		//Case 2, one card from straight flush in the middle
+		test.enemy_hand[0] = new Card('H',4);
+		test.enemy_hand[1] = new Card('H',2);
+		test.enemy_hand[2] = new Card('H',3);
+		test.enemy_hand[3] = new Card('D',2);
+		test.enemy_hand[4] = new Card('H',6);
+		int[] er2 = {1,3};
+
+		//Case 3, one card from Four of a kind 
+		test.enemy_hand[0] = new Card('H',3);
+		test.enemy_hand[1] = new Card('C',5);
+		test.enemy_hand[2] = new Card('S',3);
+		test.enemy_hand[3] = new Card('C',6);
+		test.enemy_hand[4] = new Card('D',3);
+		//Change two cards at index 1 and 3
+		int[] er3 = {2,1,3};
 	}
 	//The method cardcount() is to count how many of each color of card is on hand.
 	public void testCardcount() {
