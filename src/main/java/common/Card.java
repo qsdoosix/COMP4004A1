@@ -28,12 +28,12 @@ public class Card implements Comparable<Card> {
 
 	@Override
 	public int compareTo(Card c) {
-		String s = "SHDC";//Spade, Heart, Diamond, Club
 		if(this.number>c.number) {
 			return 1;
 		}else if(this.number<c.number) {
 			return -1;
 		}else {
+			String s = "CHSD";
 			if(s.indexOf(this.color)<s.indexOf(c.color)) {
 				return 1;//The color of this card is bigger than the compared one;
 			}else if(s.indexOf(this.color)>s.indexOf(c.color)) {
