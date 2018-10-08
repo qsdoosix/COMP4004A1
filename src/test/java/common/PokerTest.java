@@ -86,7 +86,10 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[4] = new Card('S',9);
 		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
 		int[] er1 = {1,4};
-		
+		int[] ar1 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er1.length;i++) {
+			assertEquals(er1[i],ar1[i]);
+		}		
 
 		//Case 2, one card from straight flush in the middle
 		test.enemy_hand[0] = new Card('H',4);
@@ -95,6 +98,10 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[3] = new Card('D',2);
 		test.enemy_hand[4] = new Card('H',6);
 		int[] er2 = {1,3};
+		int[] ar2 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er2.length;i++) {
+			assertEquals(er2[i],ar2[i]);
+		}		
 
 		//Case 3, one card from Four of a kind 
 		test.enemy_hand[0] = new Card('H',3);
@@ -104,8 +111,68 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[4] = new Card('D',3);
 		//Change two cards at index 1 and 3
 		int[] er3 = {2,1,3};
+		int[] ar3 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er3.length;i++) {
+			assertEquals(er3[i],ar3[i]);
+		}		
+		
+
+		//Case 4, one card from Full house with 3+1+1
+		test.enemy_hand[0] = new Card('H',10);
+		test.enemy_hand[1] = new Card('C',2);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('C',6);
+		test.enemy_hand[4] = new Card('D',10);
+		//Change the card at index 1 (Change 1 and 3 both get full house, but card at index 3 is bigger)
+		int[] er4 = {1,1};
+		int[] ar4 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er4.length;i++) {
+			assertEquals(er4[i],ar4[i]);
+		}		
+		
+		//Case 5, one card from Full house with 2+2+1
+		test.enemy_hand[0] = new Card('H',10);
+		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('C',6);
+		test.enemy_hand[4] = new Card('D',12);
+		//Change the card at index 4
+		int[] er5 = {1,4};
+		int[] ar5 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er5.length;i++) {
+			assertEquals(er5[i],ar5[i]);
+		}		
+		
+		//Case 6, 3 card with same color and 3 cards with number 
+		test.enemy_hand[0] = new Card('H',10);
+		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('C',10);
+		test.enemy_hand[4] = new Card('H',12);
+		//Change the card at index 2 and 3
+		//The color is more important by the assignment requirement
+		//So the card with same number is changed
+		int[] er6 = {2,2,3};
+		int[] ar6 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er6.length;i++) {
+			assertEquals(er6[i],ar6[i]);
+		}	
+		
+		//Case 7, 3 card with same number
+		test.enemy_hand[0] = new Card('H',10);
+		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('C',10);
+		test.enemy_hand[4] = new Card('D',12);
+		//Change the card at index 4
+		int[] er7 = {2,1,4};
+		int[] ar7 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er7.length;i++) {
+			assertEquals(er7[i],ar7[i]);
+		}	
 	}
-	//The method cardcount() is to count how many of each color of card is on hand.
+	
+	//The method cardcount() is to count how many of each color of card is in array.
 	public void testCardcount() {
 
 		Poker test = new Poker();

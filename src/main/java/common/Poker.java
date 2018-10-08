@@ -120,7 +120,7 @@ public class Poker {
 		game.initializegame();
 	}
 
-	public int[] Analyse(int[] inc, int[] inn) {
+	public int[] Analyse(Card[] in) {
 		return null;
 	}
 }
