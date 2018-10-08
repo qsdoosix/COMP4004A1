@@ -84,6 +84,18 @@ public class Poker {
 		}
 		return in;
 	}
+	public int[] sortArray(int[] in) {
+		//A helper method to sort the hands using bubble sort
+		for(int i = 0; i<in.length-1; i++) {
+			if(in[i]<in[i+1]) {
+				int t = in[i];
+				in[i]=in[i+1];
+				in[i+1]=t;
+				i=-1;
+			}
+		}
+		return in;
+	}
 	
 	public void countCard(Card[] hand) {
 		int[] ccc = {0,0,0,0};//The temporary array of color counter
@@ -121,7 +133,22 @@ public class Poker {
 	}
 
 	public int[] Analyse(Card[] in) {
-		//To analyse the input card (Should be 5 cards) and decide what to do (Change or not)
+		//To analyse the input card (Should be 5 sorted cards) and decide what to do (Change or not)
+		countCard(in);
+		//Case 1:If the input is better than straight, then do nothing 
+		for(int i = 0; i<cardnumbercount.length;i++) {
+			//If there are 4 cards with same number
+			if(cardnumbercount[i]>=4) {
+				//Returns 0 so no cards are going to be changed
+				return new int[]{0};
+			}
+		}
+		for(int i = 0; i<cardcolorcount.length;i++) {
+			//If there are 5 cards with same color
+			if(cardcolorcount[i]>=5) {
+				return new int[]{0};
+			}
+		}
 		return null;
 	}
 }

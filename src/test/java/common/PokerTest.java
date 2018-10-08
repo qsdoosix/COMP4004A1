@@ -196,6 +196,45 @@ public class PokerTest extends TestCase {
 		for(int i = 0; i < er9.length;i++) {
 			assertEquals(er9[i],ar9[i]);
 		}	
+		
+		//Case 10, 5 cards with same color
+		test.enemy_hand[0] = new Card('S',2);
+		test.enemy_hand[1] = new Card('S',4);
+		test.enemy_hand[2] = new Card('S',6);
+		test.enemy_hand[3] = new Card('S',10);
+		test.enemy_hand[4] = new Card('S',12);
+		//Change 3 cards at index 1, 2, and 3.
+		int[] er10 = {0};
+		int[] ar10 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er10.length;i++) {
+			assertEquals(er10[i],ar10[i]);
+		}
+		
+		//Case 11, 4 cards with same number
+		test.enemy_hand[0] = new Card('S',2);
+		test.enemy_hand[1] = new Card('D',2);
+		test.enemy_hand[2] = new Card('H',2);
+		test.enemy_hand[3] = new Card('C',2);
+		test.enemy_hand[4] = new Card('S',12);
+		//Change 3 cards at index 1, 2, and 3.
+		int[] er11 = {0};
+		int[] ar11 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er11.length;i++) {
+			assertEquals(er11[i],ar11[i]);
+		}
+		
+		//Case 12, 5 cards in sequence (but not same color)
+		test.enemy_hand[0] = new Card('S',4);
+		test.enemy_hand[1] = new Card('D',5);
+		test.enemy_hand[2] = new Card('C',6);
+		test.enemy_hand[3] = new Card('D',7);
+		test.enemy_hand[4] = new Card('H',8);
+		//Change 3 cards at index 1, 2, and 3.
+		int[] er12 = {0};
+		int[] ar12 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er12.length;i++) {
+			assertEquals(er12[i],ar12[i]);
+		}
 	}
 	
 	//The method cardcount() is to count how many of each color of card is in array.
