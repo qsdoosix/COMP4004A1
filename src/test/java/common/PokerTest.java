@@ -66,9 +66,13 @@ public class PokerTest extends TestCase {
 		in1[4]=new Card('C',5);
 		//This test case contains A>B, B>A A=B but better in Color, A=B but lower in color. So it covers all cases.
 		in1=test.sortArray(in1);
-		Card[] er1 = {new Card('C',1),new Card('D',2),new Card('C',5),new Card('H',5),new Card('S',5)};
+		Card[] er1 = {new Card('C',1),new Card('D',2),new Card('S',5),new Card('H',5),new Card('C',5)};
 		for(int i = 0; i < er1.length;i++) {
-			assertEquals(in1[i],er1[i]);
+			System.out.println(in1[i]+", "+er1[i]);
+		}
+		for(int i = 0; i < er1.length;i++) {
+			assertEquals(in1[i].number,er1[i].number);
+			assertEquals(in1[i].color,er1[i].color);
 		}
 	}
 	

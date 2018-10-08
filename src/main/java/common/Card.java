@@ -35,16 +35,12 @@ public class Card implements Comparable<Card> {
 		}else {
 			String s = "CHSD";
 			if(s.indexOf(this.color)<s.indexOf(c.color)) {
-				return 1;//So the color of this card is bigger than the compared one;
+				return 1;//The color of this card is bigger than the compared one;
 			}else if(s.indexOf(this.color)>s.indexOf(c.color)) {
 				return -1;
 			}else {
 				return 0;//Two same cards.
 			}
 		}
-	}
-	
-	public boolean equals(Card c) {
-		return (this.number==c.number&&this.color==c.color);
 	}
 }

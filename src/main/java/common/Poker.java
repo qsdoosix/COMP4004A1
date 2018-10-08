@@ -74,7 +74,8 @@ public class Poker {
 	public Card[] sortArray(Card[] in) {
 		//A helper method to sort the hands using bubble sort
 		for(int i = 0; i<in.length-1; i++) {
-			if(in[i].compareTo(in[i+1])>0) {
+			int r= in[i].compareTo(in[i+1]);
+			if(r>0) {
 				Card t = in[i];
 				in[i]=in[i+1];
 				in[i+1]=t;
