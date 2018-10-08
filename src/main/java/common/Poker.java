@@ -120,7 +120,8 @@ public class Poker {
 		game.initializegame();
 	}
 
-	public int[] Analyse(int[] inc, int[] inn) {
+	public int[] Analyse(Card[] in) {
+		//To analyse the input card (Should be 5 cards) and decide what to do (Change or not)
 		return null;
 	}
 }
