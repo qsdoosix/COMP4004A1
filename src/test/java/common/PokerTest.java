@@ -79,9 +79,9 @@ public class PokerTest extends TestCase {
 	public void testAnalyse() {	
 		Poker test = new Poker();
 		//Case 1, one card from straight flush by the end
-		test.enemy_hand[0] = new Card('H',4);
-		test.enemy_hand[1] = new Card('H',2);
-		test.enemy_hand[2] = new Card('H',3);
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('H',3);
+		test.enemy_hand[2] = new Card('H',4);
 		test.enemy_hand[3] = new Card('H',5);
 		test.enemy_hand[4] = new Card('S',9);
 		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
@@ -92,10 +92,10 @@ public class PokerTest extends TestCase {
 		}		
 
 		//Case 2, one card from straight flush in the middle
-		test.enemy_hand[0] = new Card('H',4);
-		test.enemy_hand[1] = new Card('H',2);
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('D',2);
 		test.enemy_hand[2] = new Card('H',3);
-		test.enemy_hand[3] = new Card('D',2);
+		test.enemy_hand[3] = new Card('H',4);
 		test.enemy_hand[4] = new Card('H',6);
 		int[] er2 = {1,3};
 		int[] ar2 = test.Analyse(test.enemy_hand);
@@ -104,11 +104,11 @@ public class PokerTest extends TestCase {
 		}		
 
 		//Case 3, one card from Four of a kind 
-		test.enemy_hand[0] = new Card('H',3);
-		test.enemy_hand[1] = new Card('C',5);
-		test.enemy_hand[2] = new Card('S',3);
-		test.enemy_hand[3] = new Card('C',6);
-		test.enemy_hand[4] = new Card('D',3);
+		test.enemy_hand[0] = new Card('S',3);
+		test.enemy_hand[1] = new Card('H',3);
+		test.enemy_hand[2] = new Card('D',3);
+		test.enemy_hand[3] = new Card('C',5);
+		test.enemy_hand[4] = new Card('C',6);
 		//Change two cards at index 1 and 3
 		int[] er3 = {2,1,3};
 		int[] ar3 = test.Analyse(test.enemy_hand);
@@ -118,10 +118,10 @@ public class PokerTest extends TestCase {
 		
 
 		//Case 4, one card from Full house with 3+1+1
-		test.enemy_hand[0] = new Card('H',10);
-		test.enemy_hand[1] = new Card('C',2);
+		test.enemy_hand[0] = new Card('C',2);
+		test.enemy_hand[1] = new Card('C',6);
 		test.enemy_hand[2] = new Card('S',10);
-		test.enemy_hand[3] = new Card('C',6);
+		test.enemy_hand[3] = new Card('H',10);
 		test.enemy_hand[4] = new Card('D',10);
 		//Change the card at index 1 (Change 1 and 3 both get full house, but card at index 3 is bigger)
 		int[] er4 = {1,1};
@@ -131,10 +131,10 @@ public class PokerTest extends TestCase {
 		}		
 		
 		//Case 5, one card from Full house with 2+2+1
-		test.enemy_hand[0] = new Card('H',10);
-		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[0] = new Card('H',6);
+		test.enemy_hand[1] = new Card('C',6);
 		test.enemy_hand[2] = new Card('S',10);
-		test.enemy_hand[3] = new Card('C',6);
+		test.enemy_hand[3] = new Card('H',10);
 		test.enemy_hand[4] = new Card('D',12);
 		//Change the card at index 4
 		int[] er5 = {1,4};
@@ -144,9 +144,9 @@ public class PokerTest extends TestCase {
 		}		
 		
 		//Case 6, 3 card with same color and 3 cards with same number
-		test.enemy_hand[0] = new Card('H',10);
-		test.enemy_hand[1] = new Card('H',6);
-		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[0] = new Card('H',6);
+		test.enemy_hand[1] = new Card('S',10);
+		test.enemy_hand[2] = new Card('H',10);
 		test.enemy_hand[3] = new Card('C',10);
 		test.enemy_hand[4] = new Card('H',12);
 		//Change the card at index 2 and 3
@@ -159,9 +159,9 @@ public class PokerTest extends TestCase {
 		}	
 		
 		//Case 7, 3 card with same number
-		test.enemy_hand[0] = new Card('H',10);
-		test.enemy_hand[1] = new Card('H',6);
-		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[0] = new Card('H',6);
+		test.enemy_hand[1] = new Card('S',10);
+		test.enemy_hand[2] = new Card('H',10);
 		test.enemy_hand[3] = new Card('C',10);
 		test.enemy_hand[4] = new Card('D',12);
 		//Change the card at index 4
@@ -169,6 +169,32 @@ public class PokerTest extends TestCase {
 		int[] ar7 = test.Analyse(test.enemy_hand);
 		for(int i = 0; i < er7.length;i++) {
 			assertEquals(er7[i],ar7[i]);
+		}	
+		
+		//Case 8, one pair
+		test.enemy_hand[0] = new Card('S',2);
+		test.enemy_hand[1] = new Card('C',4);
+		test.enemy_hand[2] = new Card('H',6);
+		test.enemy_hand[3] = new Card('H',12);
+		test.enemy_hand[4] = new Card('D',12);
+		//Change 3 cards at index 1, 2, and 3.
+		int[] er8 = {3,0,1,2};
+		int[] ar8 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er8.length;i++) {
+			assertEquals(er8[i],ar8[i]);
+		}	
+		
+		//Case 9, 5 not related cards
+		test.enemy_hand[0] = new Card('S',2);
+		test.enemy_hand[1] = new Card('C',4);
+		test.enemy_hand[2] = new Card('H',6);
+		test.enemy_hand[3] = new Card('H',10);
+		test.enemy_hand[4] = new Card('D',12);
+		//Change 3 cards at index 1, 2, and 3.
+		int[] er9 = {3,1,2,3};
+		int[] ar9 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er9.length;i++) {
+			assertEquals(er9[i],ar9[i]);
 		}	
 	}
 	
