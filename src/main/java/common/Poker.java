@@ -279,9 +279,6 @@ public class Poker {
 	public int[] oneFrom4oK(Card[] in) {
 		// TODO Auto-generated method stub
 		int[] wrong = {-1,-1};
-		if(is4oK(in)) {
-			return wrong;
-		}
 		int ones=0;
 		int three=0;
 		int[] re= new int[2];
@@ -312,6 +309,27 @@ public class Poker {
 
 	public int onefromFHouse(Card[] in) {
 		// TODO Auto-generated method stub
-		return 0;
+		//To make it one cards away from full house, it must have 2 pairs of cards and one single cards.
+		//Because the 3 cards with same number should be interpreted as one card away from 4 of a kind.
+		int pair=0;
+		countCard(in);
+		int re=-1;
+		for(int i = 0; i < cardnumbercount.length;i++) {
+			if(cardnumbercount[i]==2) {
+				pair++;
+			}else if(cardnumbercount[i]==1) {
+				for(int a = 0; a < in.length;a++) {
+					//Search for the card with same number as its index in counter (Because the index in counter is the number of card)
+					if(i==in[a].number-1) {
+						re=a;
+					}
+				}
+			}
+		}
+		if(pair==2) {
+			return re;
+		}else {
+			return -1;
+		}
 	}
 }
