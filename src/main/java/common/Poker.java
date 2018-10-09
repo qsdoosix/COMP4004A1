@@ -186,6 +186,9 @@ public class Poker {
 	}
 
 	public boolean is4oK(Card[] in) {
-		return false;
+		countCard(in);
+		cardnumbercount=sortArray(cardnumbercount);
+		//If there are 4 cards with same number, then it must be 4 of a kind.
+		return cardnumbercount[0]==4;
 	}
 }
