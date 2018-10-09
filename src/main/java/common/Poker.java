@@ -193,7 +193,8 @@ public class Poker {
 	}
 
 	public boolean isFHouse(Card[] in) {
-		// TODO Auto-generated method stub
-		return false;
+		countCard(in);
+		cardnumbercount=sortArray(cardnumbercount);
+		return(cardnumbercount[0]==3&&cardnumbercount[1]==2);
 	}
 }
