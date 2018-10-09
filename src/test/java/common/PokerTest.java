@@ -658,6 +658,7 @@ public class PokerTest extends TestCase {
 	}
 
 	//Test cases for get one cards away from something.
+	
 	public void testoneFromStraight() {
 		Poker test = new Poker();
 		//In this method, it is supposed to return the index of cards need to be changed.
@@ -725,6 +726,16 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[4] = new Card('D',12);
 		rf = test.onefromstraight(test.enemy_hand);
 		er = 4;
+		assertEquals(er,rf);
+		
+		//Case 7, Missing 2 cards
+		test.enemy_hand[0] = new Card('H',5);
+		test.enemy_hand[1] = new Card('H',7);
+		test.enemy_hand[2] = new Card('S',7);
+		test.enemy_hand[3] = new Card('C',9);
+		test.enemy_hand[4] = new Card('D',12);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = -1;
 		assertEquals(er,rf);
 	}
 	public void testoneFromFlush() {
