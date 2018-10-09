@@ -197,4 +197,9 @@ public class Poker {
 		cardnumbercount=sortArray(cardnumbercount);
 		return(cardnumbercount[0]==3&&cardnumbercount[1]==2);
 	}
+
+	public boolean is3oK(Card[] in) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

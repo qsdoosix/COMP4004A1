@@ -363,7 +363,74 @@ public class PokerTest extends TestCase {
 		boolean rf8 = test.isFHouse(test.enemy_hand);
 		assertEquals(rf8,false);
 	}
-	
+
+	public void test3oK() {
+		Poker test = new Poker();
+		
+		//Case 1:Not 3 of a kind because this is 4
+		test.enemy_hand[0] = new Card('H',6);
+		test.enemy_hand[1] = new Card('C',13);
+		test.enemy_hand[2] = new Card('S',13);
+		test.enemy_hand[3] = new Card('D',13);
+		test.enemy_hand[4] = new Card('H',13);
+		boolean rf1 = test.is3oK(test.enemy_hand);
+		assertEquals(rf1,false);
+		
+		//Case 2:3 of a kind with 3 cards at beginning
+		test.enemy_hand[0] = new Card('C',1);
+		test.enemy_hand[1] = new Card('D',1);
+		test.enemy_hand[2] = new Card('S',1);
+		test.enemy_hand[3] = new Card('H',2);
+		test.enemy_hand[4] = new Card('C',3);
+		boolean rf2 = test.is3oK(test.enemy_hand);
+		assertEquals(rf2,true);
+		
+		//Case 3:3 of a kind with 3 cards at middle
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('S',5);
+		test.enemy_hand[2] = new Card('H',5);
+		test.enemy_hand[3] = new Card('C',5);
+		test.enemy_hand[4] = new Card('D',6);
+		boolean rf3 = test.is3oK(test.enemy_hand);
+		assertEquals(rf3,true);
+		
+		//Case 4:3 of a kind with 3 cards at end
+		test.enemy_hand[0] = new Card('H',7);
+		test.enemy_hand[1] = new Card('C',8);
+		test.enemy_hand[2] = new Card('D',9);
+		test.enemy_hand[3] = new Card('H',9);
+		test.enemy_hand[4] = new Card('S',9);
+		boolean rf4 = test.is3oK(test.enemy_hand);
+		assertEquals(rf4,true);
+		
+		//Case 5:3 of a kind with 3 cards separated
+		//All numbers 1~13 are covered, all colors are covered
+		test.enemy_hand[0] = new Card('S',10);
+		test.enemy_hand[1] = new Card('H',11);
+		test.enemy_hand[2] = new Card('C',10);
+		test.enemy_hand[3] = new Card('S',12);
+		test.enemy_hand[4] = new Card('H',10);
+		boolean rf5 = test.is3oK(test.enemy_hand);
+		assertEquals(rf5,true);
+		
+		//Case 6:3 of a kind with 3 cards separated 2+1
+		test.enemy_hand[0] = new Card('S',10);
+		test.enemy_hand[1] = new Card('H',10);
+		test.enemy_hand[2] = new Card('C',11);
+		test.enemy_hand[3] = new Card('S',12);
+		test.enemy_hand[4] = new Card('H',10);
+		boolean rf6 = test.is3oK(test.enemy_hand);
+		assertEquals(rf6,true);
+		
+		//Case 7:Not 3 of a kind
+		test.enemy_hand[0] = new Card('S',10);
+		test.enemy_hand[1] = new Card('H',5);
+		test.enemy_hand[2] = new Card('C',11);
+		test.enemy_hand[3] = new Card('S',12);
+		test.enemy_hand[4] = new Card('H',10);
+		boolean rf7 = test.is3oK(test.enemy_hand);
+		assertEquals(rf7,false);
+	}
 	public void testStraight() {
 		Poker test = new Poker();		
 		//Case 1, a Royal flush with random order (it is still a straight)
