@@ -213,4 +213,9 @@ public class Poker {
 		//If there are exactly 2 of 2 cards then it is two pairs
 		return cardnumbercount[0]==2&&cardnumbercount[1]==2;
 	}
+
+	public boolean isPair(Card[] in) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
