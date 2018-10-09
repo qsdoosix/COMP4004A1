@@ -103,7 +103,7 @@ public class Poker {
 		
 		for(int i = 0; i < hand.length;i++) {
 			switch(hand[i].color) {
-				case 'C':{
+				case 'S':{
 					ccc[0]++;
 					break;
 				}
@@ -111,11 +111,11 @@ public class Poker {
 					ccc[1]++;
 					break;
 				}
-				case 'S':{
+				case 'D':{
 					ccc[2]++;
 					break;
 				}
-				case 'D':{
+				case 'C':{
 					ccc[3]++;
 					break;
 				}
@@ -217,6 +217,17 @@ public class Poker {
 
 	public int onefromflush(Card[] in) {
 		// TODO Auto-generated method stub
+		int colorindex = -1;
+		countCard(in);
+		for(int i=0;i<cardcolorcount.length;i++) {
+			if(cardcolorcount[i]==4) {//This is the color have 4 cards in hand
+				colorindex=i;
+				break;
+			}
+		}
+		if(colorindex<0) {
+			return -1;
+		}
 		return 0;
 	}
 }
