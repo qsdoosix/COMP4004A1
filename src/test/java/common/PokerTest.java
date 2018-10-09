@@ -694,7 +694,7 @@ public class PokerTest extends TestCase {
 		er = 3;
 		assertEquals(er,rf);
 		
-		//Case 3, the missing card is equal to one of the 4 cards in sequence
+		//Case 4, the missing card is equal to one of the 4 cards in sequence
 		//In this case the second card will be changed.
 		test.enemy_hand[0] = new Card('H',3);
 		test.enemy_hand[1] = new Card('H',4);
