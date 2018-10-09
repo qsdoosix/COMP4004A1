@@ -579,6 +579,15 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[4] = new Card('H',1);
 		boolean rf9 = test.isPair(test.enemy_hand);
 		assertEquals(rf9,false);
+		
+		//Case 10, two pairs, not a pair;
+		test.enemy_hand[0] = new Card('S',1);
+		test.enemy_hand[1] = new Card('D',1);
+		test.enemy_hand[2] = new Card('D',5);
+		test.enemy_hand[3] = new Card('C',5);
+		test.enemy_hand[4] = new Card('H',6);
+		boolean rf10 = test.isPair(test.enemy_hand);
+		assertEquals(rf10,false);
 	}
 	public void testStraight() {
 		Poker test = new Poker();		
