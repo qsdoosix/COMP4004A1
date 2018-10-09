@@ -184,4 +184,9 @@ public class Poker {
 		sortArray(cardcolorcount);
 		return(cardcolorcount[0]==5);
 	}
+
+	public boolean is4oK(Card[] enemy_hand2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

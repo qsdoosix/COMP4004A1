@@ -245,6 +245,65 @@ public class PokerTest extends TestCase {
 		boolean rf5 = test.isFlush(test.enemy_hand);
 		assertEquals(rf5,true);
 	}
+	public void test4oK() {
+		Poker test = new Poker();
+		//Case 1, Is a 4 of a kind with one other card at start
+		test.enemy_hand[0] = new Card('H',6);
+		test.enemy_hand[1] = new Card('C',11);
+		test.enemy_hand[2] = new Card('S',11);
+		test.enemy_hand[3] = new Card('D',11);
+		test.enemy_hand[4] = new Card('H',11);
+		boolean rf1 = test.is4oK(test.enemy_hand);
+		assertEquals(rf1,true);
+
+		//Case 2, Is a 4 of a kind with one other card at middle
+		test.enemy_hand[0] = new Card('H',3);
+		test.enemy_hand[1] = new Card('C',3);
+		test.enemy_hand[2] = new Card('S',11);
+		test.enemy_hand[3] = new Card('S',3);
+		test.enemy_hand[4] = new Card('D',3);
+		boolean rf2 = test.is4oK(test.enemy_hand);
+		assertEquals(rf2,true);
+
+		//Case 3, Is a 4 of a kind with one other card at end
+		test.enemy_hand[0] = new Card('H',4);
+		test.enemy_hand[1] = new Card('C',4);
+		test.enemy_hand[2] = new Card('D',4);
+		test.enemy_hand[3] = new Card('S',4);
+		test.enemy_hand[4] = new Card('D',5);
+		boolean rf3 = test.is4oK(test.enemy_hand);
+		assertEquals(rf3,true);
+		
+		//Case 4, one card away from 4 of a kind
+		test.enemy_hand[0] = new Card('H',5);
+		test.enemy_hand[1] = new Card('C',5);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('S',7);
+		test.enemy_hand[4] = new Card('D',5);
+		boolean rf4 = test.is4oK(test.enemy_hand);
+		assertEquals(rf4,false);
+		
+		//Case 5, 2 cards away from 4 of a kind
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('C',2);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('S',7);
+		test.enemy_hand[4] = new Card('D',11);
+		boolean rf5 = test.is4oK(test.enemy_hand);
+		assertEquals(rf5,false);
+	}
+	public void testFullHouse() {
+		Poker test = new Poker();
+		//Case 1, Is a FullHouse
+		test.enemy_hand[0] = new Card('H',6);
+		test.enemy_hand[1] = new Card('H',11);
+		test.enemy_hand[2] = new Card('H',12);
+		test.enemy_hand[3] = new Card('H',3);
+		test.enemy_hand[4] = new Card('H',1);
+		boolean rf1 = test.isFlush(test.enemy_hand);
+		assertEquals(rf1,true);
+	}
+	
 	public void testStraight() {
 		Poker test = new Poker();		
 		//Case 1, a Royal flush with random order (it is still a straight)
