@@ -692,9 +692,9 @@ public class PokerTest extends TestCase {
 		assertEquals(er,rf);
 
 		//Case 4, two cards away from a flush
-		test.enemy_hand[0] = new Card('C',2);
-		test.enemy_hand[1] = new Card('C',4);
-		test.enemy_hand[2] = new Card('C',6);
+		test.enemy_hand[0] = new Card('D',2);
+		test.enemy_hand[1] = new Card('D',4);
+		test.enemy_hand[2] = new Card('D',6);
 		test.enemy_hand[3] = new Card('S',8);
 		test.enemy_hand[4] = new Card('H',10);
 		rf = test.onefromflush(test.enemy_hand);
