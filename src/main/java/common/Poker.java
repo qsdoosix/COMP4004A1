@@ -269,4 +269,9 @@ public class Poker {
 		}
 		return re;
 	}
+
+	public int onefromFS(Card[] in) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

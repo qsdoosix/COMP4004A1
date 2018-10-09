@@ -662,12 +662,77 @@ public class PokerTest extends TestCase {
 		Poker test = new Poker();
 		int rf;//The result calculated by the method
 		int er;//The expected result
-		//Case 1, cards in 
-		test.enemy_hand[0] = new Card('H',2);
-		test.enemy_hand[1] = new Card('D',6);
+		//Case 1, the 1st card is missing
+		test.enemy_hand[0] = new Card('C',2);
+		test.enemy_hand[1] = new Card('S',6);
 		test.enemy_hand[2] = new Card('S',7);
-		test.enemy_hand[3] = new Card('C',8);
+		test.enemy_hand[3] = new Card('S',8);
 		test.enemy_hand[4] = new Card('S',9);
+		rf=test.onefromFS(test.enemy_hand);
+		er=0;
+		assertEquals(er,rf);
+		
+		//Case 2, the duplicate card in middle
+		test.enemy_hand[0] = new Card('C',2);
+		test.enemy_hand[1] = new Card('C',3);
+		test.enemy_hand[2] = new Card('S',3);
+		test.enemy_hand[3] = new Card('C',4);
+		test.enemy_hand[4] = new Card('C',5);
+		rf=test.onefromFS(test.enemy_hand);
+		er=2;
+		assertEquals(er,rf);
+		
+		//Case 3, the last card is missing
+		test.enemy_hand[0] = new Card('D',6);
+		test.enemy_hand[1] = new Card('D',7);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('D',9);
+		test.enemy_hand[4] = new Card('H',12);
+		rf=test.onefromFS(test.enemy_hand);
+		er=4;
+		assertEquals(er,rf);
+
+		//Case 4, missing one card in middle.
+		test.enemy_hand[0] = new Card('H',3);
+		test.enemy_hand[1] = new Card('H',4);
+		test.enemy_hand[2] = new Card('H',6);
+		test.enemy_hand[3] = new Card('H',7);
+		test.enemy_hand[4] = new Card('D',13);
+		rf=test.onefromFS(test.enemy_hand);
+		er=4;
+		assertEquals(er,rf);
+		
+
+		//Case 5, missing one card in middle.
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('H',5);
+		test.enemy_hand[2] = new Card('H',6);
+		test.enemy_hand[3] = new Card('H',7);
+		test.enemy_hand[4] = new Card('D',9);
+		rf=test.onefromFS(test.enemy_hand);
+		er=0;
+		
+
+		//Case 6, Not one card away from Straight flush.
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('S',5);
+		test.enemy_hand[2] = new Card('D',6);
+		test.enemy_hand[3] = new Card('C',8);
+		test.enemy_hand[4] = new Card('D',9);
+		rf=test.onefromFS(test.enemy_hand);
+		er=-1;
+		assertEquals(er,rf);
+		
+
+		//Case 7, Already a straight flush.
+		test.enemy_hand[0] = new Card('H',1);
+		test.enemy_hand[1] = new Card('H',10);
+		test.enemy_hand[2] = new Card('H',11);
+		test.enemy_hand[3] = new Card('H',12);
+		test.enemy_hand[4] = new Card('H',13);
+		rf=test.onefromFS(test.enemy_hand);
+		er=-1;
+		assertEquals(er,rf);
 	}
 	public void testoneFromStraight() {
 		Poker test = new Poker();
