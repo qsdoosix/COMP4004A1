@@ -218,6 +218,7 @@ public class Poker {
 	public int onefromflush(Card[] in) {
 		// TODO Auto-generated method stub
 		int colorindex = -1;
+		char[] colorlist= {'S','H','D','C'};
 		countCard(in);
 		for(int i=0;i<cardcolorcount.length;i++) {
 			if(cardcolorcount[i]==4) {//This is the color have 4 cards in hand
@@ -228,6 +229,11 @@ public class Poker {
 		if(colorindex<0) {
 			return -1;
 		}
-		return 0;
+		for(int i = 0; i < in.length;i++) {
+			if(in[i].color!=colorlist[colorindex]) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }
