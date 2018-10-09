@@ -676,22 +676,20 @@ public class PokerTest extends TestCase {
 			assertEquals(rf[i],er[i]);
 		}
 
-		//Test case 2, the middle card is needed to be changed
-		//Not avaliable as the cards must be sorted
-		/*
+		//Test case 2, the 1st and last card is needed to be changed
+
 		test.player_hand[0] = new Card('H',4);
-		test.player_hand[1] = new Card('D',4);
-		test.player_hand[2] = new Card('D',5);
-		test.player_hand[3] = new Card('S',4);
+		test.player_hand[1] = new Card('D',5);
+		test.player_hand[2] = new Card('C',5);
+		test.player_hand[3] = new Card('S',5);
 		test.player_hand[4] = new Card('H',6);
 		rf=test.oneFrom4oK(test.player_hand);
-		er[0]=2;
+		er[0]=0;
 		er[1]=4;
 		for(int i = 0; i < er.length;i++) {
 			assertEquals(rf[i],er[i]);
 		}
-		*/
-		//Test case 2, the First two cards is needed to be changed
+		//Test case 3, the First two cards is needed to be changed
 		test.player_hand[0] = new Card('D',7);
 		test.player_hand[1] = new Card('C',8);
 		test.player_hand[2] = new Card('H',9);
@@ -704,7 +702,7 @@ public class PokerTest extends TestCase {
 			assertEquals(rf[i],er[i]);
 		}
 		
-		//Test case 3, it is not 4 of a kind at all
+		//Test case 4, it is not 4 of a kind at all
 		test.player_hand[0] = new Card('D',7);
 		test.player_hand[1] = new Card('C',7);
 		test.player_hand[2] = new Card('H',8);
@@ -717,7 +715,7 @@ public class PokerTest extends TestCase {
 			assertEquals(rf[i],er[i]);
 		}
 
-		//Test case 4, Already 4 of a kind
+		//Test case 5, Already 4 of a kind
 		test.enemy_hand[0] = new Card('C',1);
 		test.enemy_hand[1] = new Card('S',1);
 		test.enemy_hand[2] = new Card('D',1);

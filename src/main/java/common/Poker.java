@@ -96,33 +96,18 @@ public class Poker {
 		return in;
 	}
 	
-	public void countCard(Card[] hand) {
-		int[] ccc = {0,0,0,0};//The temporary array of color counter
-		int[] cnc = {0,0,0,0,0,0,0,0,0,0,0,0,0};//The temporary array of number counter
-		
-		for(int i = 0; i < hand.length;i++) {
-			switch(hand[i].color) {
-				case 'S':{
-					ccc[0]++;
-					break;
-				}
-				case 'H':{
-					ccc[1]++;
-					break;
-				}
-				case 'D':{
-					ccc[2]++;
-					break;
-				}
-				case 'C':{
-					ccc[3]++;
-					break;
-				}
-			}
-			cnc[hand[i].number-1]++;
+	public void countCard(Card[] in) {
+		for(int i = 0;i<cardcolorcount.length;i++) {
+			cardcolorcount[i]=0;
 		}
-		cardnumbercount=cnc;
-		cardcolorcount=ccc;
+		for(int i = 0;i<cardnumbercount.length;i++) {
+			cardnumbercount[i]=0;
+		}
+		String list = "SHDC";
+		for(int i = 0; i < in.length;i++) {
+			cardcolorcount[list.indexOf(in[i].color)]++;
+			cardnumbercount[in[i].number-1]++;
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -181,19 +166,19 @@ public class Poker {
 	}
 	public boolean is4oK(Card[] in) {
 		countCard(in);
-		cardnumbercount=sortArray(cardnumbercount);
+		sortArray(cardnumbercount);
 		//If there are 4 cards with same number, then it must be 4 of a kind.
 		return cardnumbercount[0]==4;
 	}
 	public boolean isFHouse(Card[] in) {
 		countCard(in);
-		cardnumbercount=sortArray(cardnumbercount);
+		sortArray(cardnumbercount);
 		return(cardnumbercount[0]==3&&cardnumbercount[1]==2);
 	}
 	public boolean is3oK(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
-		cardnumbercount=sortArray(cardnumbercount);
+		sortArray(cardnumbercount);
 		//If there are 3 cards with same number and the other two are not same, then it is 3 of a kind
 		return cardnumbercount[0]==3&&cardnumbercount[1]<2;
 	}
@@ -201,7 +186,7 @@ public class Poker {
 	public boolean is2Pair(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
-		cardnumbercount=sortArray(cardnumbercount);
+		sortArray(cardnumbercount);
 		//If there are exactly 2 of 2 cards then it is two pairs
 		return cardnumbercount[0]==2&&cardnumbercount[1]==2;
 	}
@@ -209,7 +194,7 @@ public class Poker {
 	public boolean isPair(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
-		cardnumbercount=sortArray(cardnumbercount);
+		sortArray(cardnumbercount);
 		//If there are exactly 2 of 2 cards then it is two pairs
 		return cardnumbercount[0]==2&&cardnumbercount[1]<2;
 	}
