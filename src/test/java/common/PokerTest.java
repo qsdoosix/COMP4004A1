@@ -679,8 +679,8 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[0] = new Card('D',4);
 		test.enemy_hand[1] = new Card('C',5);
 		test.enemy_hand[2] = new Card('S',5);
-		test.enemy_hand[3] = new Card('H',8);
-		test.enemy_hand[4] = new Card('S',9);
+		test.enemy_hand[3] = new Card('H',7);
+		test.enemy_hand[4] = new Card('S',8);
 		rf = test.onefromstraight(test.enemy_hand);
 		er = 1;
 		assertEquals(er,rf);
