@@ -170,6 +170,20 @@ public class Poker {
 
 	public boolean isStraight(Card[] in) {
 		// TODO Auto-generated method stub
+		in=sortArray(in);
+		//The special case about card 'Ace'
+		if( in[0].number==1&&
+			in[1].number==10&&
+			in[2].number==11&&
+			in[3].number==12&&
+			in[4].number==13) {
+			return true;
+		}
+		if(in[0].number!=in[1].number&&in[1].number!=in[2].number&&in[2].number!=in[3].number&&in[3].number!=in[4].number) {
+			//If 5 sorted card are different and the maximum card minus minimum card is 4, then it must be 5 cards in sequence.
+			//Then the smallest card must not be 'A' (because A 2 3 4 5 is not a straight as far as i know)
+			return (in[4].number-in[0].number==4&&in[0].number!=1);
+		}
 		return false;
 	}
 }
