@@ -154,4 +154,9 @@ public class Poker {
 				in[3].number==12&&
 				in[4].number==13;
 	}
+
+	public boolean isStraightFlush(Card[] in) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

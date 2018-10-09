@@ -132,6 +132,74 @@ public class PokerTest extends TestCase {
 		boolean rf6 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf6,false);
 	}
+	
+	public void testStraightFlush() {
+		Poker test = new Poker();
+		
+		//Case 1, a straight flush with random order
+		test.enemy_hand[0] = new Card('S',11);
+		test.enemy_hand[1] = new Card('S',13);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('S',9);
+		test.enemy_hand[4] = new Card('S',12);
+		boolean rf1 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf1,true);
+
+		//Case 2, a straight flush with normal order
+		test.enemy_hand[0] = new Card('D',3);
+		test.enemy_hand[1] = new Card('D',4);
+		test.enemy_hand[2] = new Card('D',5);
+		test.enemy_hand[3] = new Card('D',6);
+		test.enemy_hand[4] = new Card('D',7);
+		boolean rf2 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf2,true);
+
+		//Case 3, a straight flush with reverse order
+		test.enemy_hand[0] = new Card('C',13);
+		test.enemy_hand[1] = new Card('C',12);
+		test.enemy_hand[2] = new Card('C',11);
+		test.enemy_hand[3] = new Card('C',10);
+		test.enemy_hand[4] = new Card('C',9);
+		boolean rf3 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf3,true);
+
+		//Case 4, a straight flush with random order
+		test.enemy_hand[0] = new Card('H',9);
+		test.enemy_hand[1] = new Card('H',5);
+		test.enemy_hand[2] = new Card('H',7);
+		test.enemy_hand[3] = new Card('H',6);
+		test.enemy_hand[4] = new Card('H',8);
+		boolean rf4 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf4,true);
+		
+
+		//Case 5, Not a straight flush (but is a straight)
+		test.enemy_hand[0] = new Card('S',9);
+		test.enemy_hand[1] = new Card('H',5);
+		test.enemy_hand[2] = new Card('H',7);
+		test.enemy_hand[3] = new Card('H',6);
+		test.enemy_hand[4] = new Card('H',8);
+		boolean rf5 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf5,true);
+
+		//Case 6, Not a straight flush (but is a straight)
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('H',3);
+		test.enemy_hand[2] = new Card('S',4);
+		test.enemy_hand[3] = new Card('H',5);
+		test.enemy_hand[4] = new Card('H',6);
+		boolean rf6 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf6,false);
+		
+		//Case 6, Not a straight flush (but with same color)
+		test.enemy_hand[0] = new Card('H',9);
+		test.enemy_hand[1] = new Card('H',8);
+		test.enemy_hand[2] = new Card('H',6);
+		test.enemy_hand[3] = new Card('H',6);
+		test.enemy_hand[4] = new Card('H',5);
+		boolean rf7 = test.isStraightFlush(test.enemy_hand);
+		assertEquals(rf7,false);
+	}
 	/*
 	public void testAnalyse() {	
 		Poker test = new Poker();
