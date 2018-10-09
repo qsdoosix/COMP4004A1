@@ -238,7 +238,6 @@ public class Poker {
 	}
 
 	public int onefromstraight(Card[] in) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

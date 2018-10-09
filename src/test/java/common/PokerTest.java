@@ -675,13 +675,14 @@ public class PokerTest extends TestCase {
 		
 		//Case 2, the missing card is equal to one of the 4 cards in straight
 		//And this case also covers the case that the missing card is in middle of a straight
+		//The first duplicated card will be changed as it is smaller.
 		test.enemy_hand[0] = new Card('D',4);
 		test.enemy_hand[1] = new Card('C',5);
 		test.enemy_hand[2] = new Card('S',5);
 		test.enemy_hand[3] = new Card('H',8);
 		test.enemy_hand[4] = new Card('S',9);
 		rf = test.onefromstraight(test.enemy_hand);
-		er = 3;
+		er = 1;
 		assertEquals(er,rf);
 
 		//Case 3, the missing card is bigger than the 4 cards in straight
@@ -691,18 +692,18 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[3] = new Card('S',11);
 		test.enemy_hand[4] = new Card('S',13);
 		rf = test.onefromstraight(test.enemy_hand);
-		er = 3;
+		er = 4;
 		assertEquals(er,rf);
 		
 		//Case 4, the missing card is equal to one of the 4 cards in sequence
-		//In this case the second card will be changed.
+		//In this case the first card will be changed.
 		test.enemy_hand[0] = new Card('H',3);
 		test.enemy_hand[1] = new Card('H',4);
 		test.enemy_hand[2] = new Card('S',4);
 		test.enemy_hand[3] = new Card('C',5);
 		test.enemy_hand[4] = new Card('D',6);
 		rf = test.onefromstraight(test.enemy_hand);
-		er = 2;
+		er = 1;
 		assertEquals(er,rf);
 	}
 	public void testoneFromFlush() {
