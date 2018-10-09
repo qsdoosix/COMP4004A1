@@ -84,7 +84,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('H',12);
 		test.enemy_hand[3] = new Card('H',13);
 		test.enemy_hand[4] = new Card('H',1);
-		boolean rf1 = test.isRoyalFlush();
+		boolean rf1 = test.isRoyalFlush()test.enemy_hand;
 		assertEquals(rf1,true);
 		
 		//Case 2, reverse ordered case
@@ -93,7 +93,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('D',12);
 		test.enemy_hand[3] = new Card('D',11);
 		test.enemy_hand[4] = new Card('D',10);
-		boolean rf2 = test.isRoyalFlush();
+		boolean rf2 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf2,true);
 		
 		//Case 3, mix ordered case
@@ -102,7 +102,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('S',1);
 		test.enemy_hand[3] = new Card('S',12);
 		test.enemy_hand[4] = new Card('S',10);
-		boolean rf3 = test.isRoyalFlush();
+		boolean rf3 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf3,true);
 
 		//Case 4, mix ordered case 2
@@ -111,7 +111,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('C',10);
 		test.enemy_hand[3] = new Card('C',1);
 		test.enemy_hand[4] = new Card('C',12);
-		boolean rf4 = test.isRoyalFlush();
+		boolean rf4 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf4,true);
 		
 		//Case 5, Not royal flush case because of color (but it is a straight)
@@ -120,7 +120,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('C',10);
 		test.enemy_hand[3] = new Card('S',1);
 		test.enemy_hand[4] = new Card('S',12);
-		boolean rf5 = test.isRoyalFlush();
+		boolean rf5 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf5,false);
 		
 		//Case 6, Not royal flush case because of number (but it is a straight flush)
@@ -129,7 +129,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('S',10);
 		test.enemy_hand[3] = new Card('S',9);
 		test.enemy_hand[4] = new Card('S',12);
-		boolean rf6 = test.isRoyalFlush();
+		boolean rf6 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf6,false);
 	}
 	

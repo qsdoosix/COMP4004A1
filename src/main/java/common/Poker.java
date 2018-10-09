@@ -134,31 +134,10 @@ public class Poker {
 
 	public int[] Analyse(Card[] in) {
 		//To analyse the input card (Should be 5 sorted cards) and decide what to do (Change or not)
-		countCard(in);
-		boolean ctf=false;//If the hand is Close To Flush
-		boolean ct4=false;//If the hand is Close To 4 of a kind
-		//Sort the two counter for analyse
-		cardnumbercount=sortArray(cardnumbercount);
-		cardcolorcount=sortArray(cardcolorcount);
-		
-		//Case 1:If the input is better than straight, then do nothing 
-		//If all the cards are same color
-		//So it is a flush or straight flush or royal flush
-		if(cardcolorcount[3]==5) {
-			//Do nothing
-			return new int[] {0};
-		}
-		//If it is a 4 of a kind
-		if(cardnumbercount[12]==4) {
-			//There is 4 cards with same color
-			//Do nothing
-			return new int[] {0};
-		}
-		
 		return null;
 	}
 
-	public boolean isRoyalFlush() {
+	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
 		return true;
 	}
