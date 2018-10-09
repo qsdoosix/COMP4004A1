@@ -283,6 +283,7 @@ public class Poker {
 			//If changing a card can make it became flush and straight at same time, then it must be one card from straight flush.
 			return r1;
 		}else {
+			//A special case that there may be two cards with same number but only one of them can be used for flush
 			if(r1>-1&&r2>-1) {
 				if(in[r1].number==in[r2].number) {
 					return r1;
