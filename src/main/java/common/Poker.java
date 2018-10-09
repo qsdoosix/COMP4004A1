@@ -136,7 +136,6 @@ public class Poker {
 		//To analyse the input card (Should be 5 sorted cards) and decide what to do (Change or not)
 		return null;
 	}
-
 	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
 		sortArray(in);
@@ -154,11 +153,9 @@ public class Poker {
 				in[3].number==12&&
 				in[4].number==13;
 	}
-
 	public boolean isStraightFlush(Card[] in) {
 		return isFlush(in)&&isStraight(in);
 	}
-
 	public boolean isStraight(Card[] in) {
 		// TODO Auto-generated method stub
 		in=sortArray(in);
@@ -177,27 +174,23 @@ public class Poker {
 		}
 		return false;
 	}
-
 	public boolean isFlush(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
 		cardcolorcount=sortArray(cardcolorcount);
 		return(cardcolorcount[0]==5);
 	}
-
 	public boolean is4oK(Card[] in) {
 		countCard(in);
 		cardnumbercount=sortArray(cardnumbercount);
 		//If there are 4 cards with same number, then it must be 4 of a kind.
 		return cardnumbercount[0]==4;
 	}
-
 	public boolean isFHouse(Card[] in) {
 		countCard(in);
 		cardnumbercount=sortArray(cardnumbercount);
 		return(cardnumbercount[0]==3&&cardnumbercount[1]==2);
 	}
-
 	public boolean is3oK(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
@@ -220,5 +213,10 @@ public class Poker {
 		cardnumbercount=sortArray(cardnumbercount);
 		//If there are exactly 2 of 2 cards then it is two pairs
 		return cardnumbercount[0]==2&&cardnumbercount[1]<2;
+	}
+
+	public int onefromflush(Card[] in) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
