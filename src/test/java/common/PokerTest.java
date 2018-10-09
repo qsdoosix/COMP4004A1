@@ -658,7 +658,7 @@ public class PokerTest extends TestCase {
 	}
 
 	//Test cases for get one cards away from something.
-	public void testonefromFHouse() {
+	public void testoneFromFHouse() {
 		Poker test = new Poker();
 		//Because the case about 3+1+1 will be interpreted as one card from 4 of a kind
 		//And the case that one outlier card is inserted in a pair is not possible as the input is supposed to be sorted.
