@@ -309,4 +309,9 @@ public class Poker {
 			return wrong;
 		}
 	}
+
+	public int onefromFHouse(Card[] in) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -658,6 +658,74 @@ public class PokerTest extends TestCase {
 	}
 
 	//Test cases for get one cards away from something.
+	public void testonefromFHouse() {
+		Poker test = new Poker();
+		//Because the case about 3+1+1 will be interpreted as one card from 4 of a kind
+		//And the case that one outlier card is inserted in a pair is not possible as the input is supposed to be sorted.
+		//So they are not tested in the test cases.
+		int rf;//The result calculated by the method
+		int er;//The expected result
+		//Case 1, 1+2+2
+		test.enemy_hand[0] = new Card('C',1);
+		test.enemy_hand[1] = new Card('S',2);
+		test.enemy_hand[2] = new Card('D',2);
+		test.enemy_hand[3] = new Card('H',3);
+		test.enemy_hand[4] = new Card('C',3);
+		rf=test.onefromFHouse(test.enemy_hand);
+		er=0;
+		assertEquals(rf,er);
+
+		//Case 2, 2+1+2
+		test.player_hand[0] = new Card('S',4);
+		test.player_hand[1] = new Card('D',4);
+		test.player_hand[2] = new Card('C',5);
+		test.player_hand[3] = new Card('S',6);
+		test.player_hand[4] = new Card('H',6);
+		rf=test.onefromFHouse(test.player_hand);
+		er=2;
+		assertEquals(rf,er);
+		
+		//Case 3, 2+2+1
+		test.player_hand[0] = new Card('D',7);
+		test.player_hand[1] = new Card('C',7);
+		test.player_hand[2] = new Card('S',8);
+		test.player_hand[3] = new Card('H',8);
+		test.player_hand[4] = new Card('S',9);
+		rf=test.onefromFHouse(test.player_hand);
+		er=4;
+		assertEquals(rf,er);
+		
+		//Case 4, 3+2 a full house
+		test.enemy_hand[0] = new Card('D',10);
+		test.enemy_hand[1] = new Card('C',10);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('H',12);
+		test.enemy_hand[4] = new Card('S',12);
+		rf=test.onefromFHouse(test.enemy_hand);
+		er=-1;
+		assertEquals(rf,er);
+		
+		//Case 5, 2+3 a full house
+		test.enemy_hand[0] = new Card('S',1);
+		test.enemy_hand[1] = new Card('C',1);
+		test.enemy_hand[2] = new Card('H',11);
+		test.enemy_hand[3] = new Card('D',11);
+		test.enemy_hand[4] = new Card('C',11);
+		rf=test.onefromFHouse(test.enemy_hand);
+		er=-1;
+		assertEquals(rf,er);
+
+		//Case 6, 2+1+1+1 //Not a full house
+		test.enemy_hand[0] = new Card('S',2);
+		test.enemy_hand[1] = new Card('C',2);
+		test.enemy_hand[2] = new Card('H',3);
+		test.enemy_hand[3] = new Card('D',4);
+		test.enemy_hand[4] = new Card('C',5);
+		rf=test.onefromFHouse(test.enemy_hand);
+		er=-1;
+		assertEquals(rf,er);
+	}
+	
 	public void testoneFrom4oK() {
 		Poker test = new Poker();
 		int[] rf;//The result calculated by the method
