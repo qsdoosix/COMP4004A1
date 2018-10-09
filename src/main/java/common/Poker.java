@@ -186,4 +186,9 @@ public class Poker {
 		}
 		return false;
 	}
+
+	public boolean isFlush(Card[] enemy_hand2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
