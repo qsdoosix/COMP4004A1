@@ -139,6 +139,19 @@ public class Poker {
 
 	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
-		return true;
+		sortArray(in);
+		countCard(in);
+		sortArray(cardcolorcount);
+		sortArray(cardnumbercount);
+		if(cardcolorcount[0]<5) {
+			//The 5 cards are not in same color, so it can't be a royal flush;
+			return false;
+		}		
+		//Because input is sorted at the beginning, so it must be 1(A) 10,J,Q,K
+		return  in[0].number==1&&
+				in[1].number==10&&
+				in[2].number==11&&
+				in[3].number==12&&
+				in[4].number==13;
 	}
 }

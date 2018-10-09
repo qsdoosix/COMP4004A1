@@ -84,7 +84,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[2] = new Card('H',12);
 		test.enemy_hand[3] = new Card('H',13);
 		test.enemy_hand[4] = new Card('H',1);
-		boolean rf1 = test.isRoyalFlush()test.enemy_hand;
+		boolean rf1 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf1,true);
 		
 		//Case 2, reverse ordered case
@@ -132,7 +132,7 @@ public class PokerTest extends TestCase {
 		boolean rf6 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf6,false);
 	}
-	
+	/*
 	public void testAnalyse() {	
 		Poker test = new Poker();
 		//Case 1, one card from straight flush by the end
@@ -177,7 +177,7 @@ public class PokerTest extends TestCase {
 		//Case 4, one card from Full house with 3+1+1
 		//I found this is not useful as it should be interpreted as "One card from 4 of a kind"
 		//Because on the Poker website, 4 of a kind is better than full house.
-/*		test.enemy_hand[0] = new Card('C',2);
+		test.enemy_hand[0] = new Card('C',2);
 		test.enemy_hand[1] = new Card('C',6);
 		test.enemy_hand[2] = new Card('S',10);
 		test.enemy_hand[3] = new Card('H',10);
@@ -188,7 +188,7 @@ public class PokerTest extends TestCase {
 		for(int i = 0; i < er4.length;i++) {
 			assertEquals(er4[i],ar4[i]);
 		}
-*/		
+		
 		
 		//Case 5, one card from Full house with 2+2+1
 		test.enemy_hand[0] = new Card('H',6);
@@ -295,7 +295,7 @@ public class PokerTest extends TestCase {
 		for(int i = 0; i < er12.length;i++) {
 			assertEquals(er12[i],ar12[i]);
 		}
-	}
+	}*/
 	
 	//The method cardcount() is to count how many of each color of card is in array.
 	public void testCardcount() {
