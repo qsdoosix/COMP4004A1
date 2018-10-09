@@ -21,7 +21,6 @@ public class Poker {
 		//Split the input by comma
 		String[] input = line.split(" ");
 		for(int i =0; i < input.length;i++) {
-			//System.out.println(input[i]);
 			int n;
 			if(input[i].charAt(1)=='A') {
 				n=1;
@@ -278,7 +277,6 @@ public class Poker {
 		}
 		int r1=onefromflush(in);
 		int r2=onefromstraight(in);
-		System.out.println("r1 = "+r1+", r2 = "+r2);
 		if(r1==r2) {
 			//If changing a card can make it became flush and straight at same time, then it must be one card from straight flush.
 			return r1;
@@ -291,5 +289,10 @@ public class Poker {
 			}
 		}
 		return -1;
+	}
+
+	public int[] oneFrom4oK(Card[] in) {
+		// TODO Auto-generated method stub
+		return new int[] {-1,-1};
 	}
 }
