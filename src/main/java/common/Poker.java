@@ -236,7 +236,6 @@ public class Poker {
 		}
 		return -1;
 	}
-
 	public int onefromstraight(Card[] in) {
 		int re = -1;
 		//A free card to represent the "missing" card can be any card in sequence.

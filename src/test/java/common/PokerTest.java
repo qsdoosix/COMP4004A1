@@ -75,12 +75,12 @@ public class PokerTest extends TestCase {
 	public void testRoyalflush() {
 		Poker test = new Poker();
 		//Case 1, ordered case
-		test.enemy_hand[0] = new Card('H',10);
-		test.enemy_hand[1] = new Card('H',11);
-		test.enemy_hand[2] = new Card('H',12);
-		test.enemy_hand[3] = new Card('H',13);
-		test.enemy_hand[4] = new Card('H',1);
-		boolean rf1 = test.isRoyalFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('H',10);
+		test.player_hand[1] = new Card('H',11);
+		test.player_hand[2] = new Card('H',12);
+		test.player_hand[3] = new Card('H',13);
+		test.player_hand[4] = new Card('H',1);
+		boolean rf1 = test.isRoyalFlush(test.player_hand);
 		assertEquals(rf1,true);
 		
 		//Case 2, reverse ordered case
@@ -102,12 +102,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf3,true);
 
 		//Case 4, mix ordered case 2
-		test.enemy_hand[0] = new Card('C',11);
-		test.enemy_hand[1] = new Card('C',13);
-		test.enemy_hand[2] = new Card('C',10);
-		test.enemy_hand[3] = new Card('C',1);
-		test.enemy_hand[4] = new Card('C',12);
-		boolean rf4 = test.isRoyalFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('C',11);
+		test.player_hand[1] = new Card('C',13);
+		test.player_hand[2] = new Card('C',10);
+		test.player_hand[3] = new Card('C',1);
+		test.player_hand[4] = new Card('C',12);
+		boolean rf4 = test.isRoyalFlush(test.player_hand);
 		assertEquals(rf4,true);
 		
 		//Case 5, Not royal flush case because of color (but it is a straight)
@@ -141,12 +141,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf1,true);
 
 		//Case 2, a straight flush with normal order
-		test.enemy_hand[0] = new Card('D',3);
-		test.enemy_hand[1] = new Card('D',4);
-		test.enemy_hand[2] = new Card('D',5);
-		test.enemy_hand[3] = new Card('D',6);
-		test.enemy_hand[4] = new Card('D',7);
-		boolean rf2 = test.isStraightFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('D',3);
+		test.player_hand[1] = new Card('D',4);
+		test.player_hand[2] = new Card('D',5);
+		test.player_hand[3] = new Card('D',6);
+		test.player_hand[4] = new Card('D',7);
+		boolean rf2 = test.isStraightFlush(test.player_hand);
 		assertEquals(rf2,true);
 
 		//Case 3, a straight flush with reverse order
@@ -187,12 +187,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf6,false);
 		
 		//Case 6, Not a straight flush (but with same color)
-		test.enemy_hand[0] = new Card('H',9);
-		test.enemy_hand[1] = new Card('H',8);
-		test.enemy_hand[2] = new Card('H',6);
-		test.enemy_hand[3] = new Card('H',6);
-		test.enemy_hand[4] = new Card('H',5);
-		boolean rf7 = test.isStraightFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('H',9);
+		test.player_hand[1] = new Card('H',8);
+		test.player_hand[2] = new Card('H',6);
+		test.player_hand[3] = new Card('H',6);
+		test.player_hand[4] = new Card('H',5);
+		boolean rf7 = test.isStraightFlush(test.player_hand);
 		assertEquals(rf7,false);
 	}
 	public void testFlush() {
@@ -207,21 +207,21 @@ public class PokerTest extends TestCase {
 		assertEquals(rf1,true);
 		
 		//Case 2, Is a flush with other color
-		test.enemy_hand[0] = new Card('D',2);
-		test.enemy_hand[1] = new Card('D',6);
-		test.enemy_hand[2] = new Card('D',4);
-		test.enemy_hand[3] = new Card('D',5);
-		test.enemy_hand[4] = new Card('D',9);
-		boolean rf2 = test.isFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('D',2);
+		test.player_hand[1] = new Card('D',6);
+		test.player_hand[2] = new Card('D',4);
+		test.player_hand[3] = new Card('D',5);
+		test.player_hand[4] = new Card('D',9);
+		boolean rf2 = test.isFlush(test.player_hand);
 		assertEquals(rf2,true);
 
 		//Case 3, Not a flush
-		test.enemy_hand[0] = new Card('D',1);
-		test.enemy_hand[1] = new Card('C',5);
-		test.enemy_hand[2] = new Card('S',7);
-		test.enemy_hand[3] = new Card('H',8);
-		test.enemy_hand[4] = new Card('D',13);
-		boolean rf3 = test.isFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('D',1);
+		test.player_hand[1] = new Card('C',5);
+		test.player_hand[2] = new Card('S',7);
+		test.player_hand[3] = new Card('H',8);
+		test.player_hand[4] = new Card('D',13);
+		boolean rf3 = test.isFlush(test.player_hand);
 		assertEquals(rf3,false);
 		
 
@@ -255,12 +255,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf1,true);
 
 		//Case 2, Is a 4 of a kind with one other card at middle
-		test.enemy_hand[0] = new Card('H',3);
-		test.enemy_hand[1] = new Card('C',3);
-		test.enemy_hand[2] = new Card('S',11);
-		test.enemy_hand[3] = new Card('S',3);
-		test.enemy_hand[4] = new Card('D',3);
-		boolean rf2 = test.is4oK(test.enemy_hand);
+		test.player_hand[0] = new Card('H',3);
+		test.player_hand[1] = new Card('C',3);
+		test.player_hand[2] = new Card('S',11);
+		test.player_hand[3] = new Card('S',3);
+		test.player_hand[4] = new Card('D',3);
+		boolean rf2 = test.is4oK(test.player_hand);
 		assertEquals(rf2,true);
 
 		//Case 3, Is a 4 of a kind with one other card at end
@@ -282,12 +282,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf4,false);
 		
 		//Case 5, 2 cards away from 4 of a kind
-		test.enemy_hand[0] = new Card('H',2);
-		test.enemy_hand[1] = new Card('C',2);
-		test.enemy_hand[2] = new Card('D',8);
-		test.enemy_hand[3] = new Card('S',7);
-		test.enemy_hand[4] = new Card('D',11);
-		boolean rf5 = test.is4oK(test.enemy_hand);
+		test.player_hand[0] = new Card('H',2);
+		test.player_hand[1] = new Card('C',2);
+		test.player_hand[2] = new Card('D',8);
+		test.player_hand[3] = new Card('S',7);
+		test.player_hand[4] = new Card('D',11);
+		boolean rf5 = test.is4oK(test.player_hand);
 		assertEquals(rf5,false);
 	}
 	public void testFullHouse() {
@@ -311,12 +311,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf2,true);
 		
 		//Case 3, Is a FullHouse ordered 2 and then 3
-		test.enemy_hand[0] = new Card('H',2);
-		test.enemy_hand[1] = new Card('C',2);
-		test.enemy_hand[2] = new Card('H',12);
-		test.enemy_hand[3] = new Card('S',12);
-		test.enemy_hand[4] = new Card('D',12);
-		boolean rf3 = test.isFHouse(test.enemy_hand);
+		test.player_hand[0] = new Card('H',2);
+		test.player_hand[1] = new Card('C',2);
+		test.player_hand[2] = new Card('H',12);
+		test.player_hand[3] = new Card('S',12);
+		test.player_hand[4] = new Card('D',12);
+		boolean rf3 = test.isFHouse(test.player_hand);
 		assertEquals(rf3,true);
 		
 		//Case 4, Not a full house
@@ -338,12 +338,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf5,true);
 		
 		//Case 6, Is not a FullHouse with 1+2+2
-		test.enemy_hand[0] = new Card('C',10);
-		test.enemy_hand[1] = new Card('S',8);
-		test.enemy_hand[2] = new Card('D',6);
-		test.enemy_hand[3] = new Card('H',8);
-		test.enemy_hand[4] = new Card('C',6);
-		boolean rf6 = test.isFHouse(test.enemy_hand);
+		test.player_hand[0] = new Card('C',10);
+		test.player_hand[1] = new Card('S',8);
+		test.player_hand[2] = new Card('D',6);
+		test.player_hand[3] = new Card('H',8);
+		test.player_hand[4] = new Card('C',6);
+		boolean rf6 = test.isFHouse(test.player_hand);
 		assertEquals(rf6,false);
 		
 		//Case 7, Is not a FullHouse with 2+1+2
@@ -356,12 +356,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf7,false);
 		
 		//Case 8, Is not a FullHouse with 2+2+1
-		test.enemy_hand[0] = new Card('C',9);
-		test.enemy_hand[1] = new Card('S',9);
-		test.enemy_hand[2] = new Card('D',7);
-		test.enemy_hand[3] = new Card('H',7);
-		test.enemy_hand[4] = new Card('C',11);
-		boolean rf8 = test.isFHouse(test.enemy_hand);
+		test.player_hand[0] = new Card('C',9);
+		test.player_hand[1] = new Card('S',9);
+		test.player_hand[2] = new Card('D',7);
+		test.player_hand[3] = new Card('H',7);
+		test.player_hand[4] = new Card('C',11);
+		boolean rf8 = test.isFHouse(test.player_hand);
 		assertEquals(rf8,false);
 	}
 	public void test3oK() {
@@ -386,12 +386,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf2,true);
 		
 		//Case 3:3 of a kind with 3 cards at middle
-		test.enemy_hand[0] = new Card('D',4);
-		test.enemy_hand[1] = new Card('S',5);
-		test.enemy_hand[2] = new Card('H',5);
-		test.enemy_hand[3] = new Card('C',5);
-		test.enemy_hand[4] = new Card('D',6);
-		boolean rf3 = test.is3oK(test.enemy_hand);
+		test.player_hand[0] = new Card('D',4);
+		test.player_hand[1] = new Card('S',5);
+		test.player_hand[2] = new Card('H',5);
+		test.player_hand[3] = new Card('C',5);
+		test.player_hand[4] = new Card('D',6);
+		boolean rf3 = test.is3oK(test.player_hand);
 		assertEquals(rf3,true);
 		
 		//Case 4:3 of a kind with 3 cards at end
@@ -405,12 +405,12 @@ public class PokerTest extends TestCase {
 		
 		//Case 5:3 of a kind with 3 cards separated
 		//All numbers 1~13 are covered, all colors are covered
-		test.enemy_hand[0] = new Card('S',10);
-		test.enemy_hand[1] = new Card('H',11);
-		test.enemy_hand[2] = new Card('C',10);
-		test.enemy_hand[3] = new Card('S',12);
-		test.enemy_hand[4] = new Card('H',10);
-		boolean rf5 = test.is3oK(test.enemy_hand);
+		test.player_hand[0] = new Card('S',10);
+		test.player_hand[1] = new Card('H',11);
+		test.player_hand[2] = new Card('C',10);
+		test.player_hand[3] = new Card('S',12);
+		test.player_hand[4] = new Card('H',10);
+		boolean rf5 = test.is3oK(test.player_hand);
 		assertEquals(rf5,true);
 		
 		//Case 6:3 of a kind with 3 cards separated 2+1
@@ -444,12 +444,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf1,true);
 		
 		//Case 2:Two pairs 2+1+2
-		test.enemy_hand[0] = new Card('C',4);
-		test.enemy_hand[1] = new Card('H',4);
-		test.enemy_hand[2] = new Card('C',5);
-		test.enemy_hand[3] = new Card('H',6);
-		test.enemy_hand[4] = new Card('C',6);
-		boolean rf2 = test.is2Pair(test.enemy_hand);
+		test.player_hand[0] = new Card('C',4);
+		test.player_hand[1] = new Card('H',4);
+		test.player_hand[2] = new Card('C',5);
+		test.player_hand[3] = new Card('H',6);
+		test.player_hand[4] = new Card('C',6);
+		boolean rf2 = test.is2Pair(test.player_hand);
 		assertEquals(rf2,true);
 		
 		//Case 3:Two pairs 2+2+1
@@ -462,12 +462,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf3,true);
 		
 		//Case 4:Two pairs inserted in middle
-		test.enemy_hand[0] = new Card('S',10);
-		test.enemy_hand[1] = new Card('D',11);
-		test.enemy_hand[2] = new Card('S',10);
-		test.enemy_hand[3] = new Card('D',12);
-		test.enemy_hand[4] = new Card('S',12);
-		boolean rf4 = test.is2Pair(test.enemy_hand);
+		test.player_hand[0] = new Card('S',10);
+		test.player_hand[1] = new Card('D',11);
+		test.player_hand[2] = new Card('S',10);
+		test.player_hand[3] = new Card('D',12);
+		test.player_hand[4] = new Card('S',12);
+		boolean rf4 = test.is2Pair(test.player_hand);
 		assertEquals(rf4,true);
 
 		//Case 5:Two pairs inserted in the other way
@@ -490,12 +490,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf6,false);
 
 		//Case 7:Not two pairs but one pair
-		test.enemy_hand[0] = new Card('H',5);
-		test.enemy_hand[1] = new Card('D',5);
-		test.enemy_hand[2] = new Card('C',6);
-		test.enemy_hand[3] = new Card('S',7);
-		test.enemy_hand[4] = new Card('S',8);
-		boolean rf7 = test.is2Pair(test.enemy_hand);
+		test.player_hand[0] = new Card('H',5);
+		test.player_hand[1] = new Card('D',5);
+		test.player_hand[2] = new Card('C',6);
+		test.player_hand[3] = new Card('S',7);
+		test.player_hand[4] = new Card('S',8);
+		boolean rf7 = test.is2Pair(test.player_hand);
 		assertEquals(rf7,false);
 	}
 	public void testPair() {
@@ -509,12 +509,12 @@ public class PokerTest extends TestCase {
 		boolean rf1 = test.isPair(test.enemy_hand);
 		assertEquals(rf1,true);
 		//Case 2, a pair together at middle
-		test.enemy_hand[0] = new Card('H',5);
-		test.enemy_hand[1] = new Card('H',6);
-		test.enemy_hand[2] = new Card('D',6);
-		test.enemy_hand[3] = new Card('H',7);
-		test.enemy_hand[4] = new Card('H',8);
-		boolean rf2 = test.isPair(test.enemy_hand);
+		test.player_hand[0] = new Card('H',5);
+		test.player_hand[1] = new Card('H',6);
+		test.player_hand[2] = new Card('D',6);
+		test.player_hand[3] = new Card('H',7);
+		test.player_hand[4] = new Card('H',8);
+		boolean rf2 = test.isPair(test.player_hand);
 		assertEquals(rf2,true);
 		//Case 3, a pair together at end
 		test.enemy_hand[0] = new Card('S',9);
@@ -545,12 +545,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf5,true);
 		
 		//Case 6, Not a pair;
-		test.enemy_hand[0] = new Card('S',1);
-		test.enemy_hand[1] = new Card('D',2);
-		test.enemy_hand[2] = new Card('D',4);
-		test.enemy_hand[3] = new Card('C',7);
-		test.enemy_hand[4] = new Card('H',9);
-		boolean rf6 = test.isPair(test.enemy_hand);
+		test.player_hand[0] = new Card('S',1);
+		test.player_hand[1] = new Card('D',2);
+		test.player_hand[2] = new Card('D',4);
+		test.player_hand[3] = new Card('C',7);
+		test.player_hand[4] = new Card('H',9);
+		boolean rf6 = test.isPair(test.player_hand);
 		assertEquals(rf6,false);
 		
 		//Case 7, 3 of a kind, not a pair;
@@ -572,12 +572,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf8,false);
 		
 		//Case 9, full house, not a pair;
-		test.enemy_hand[0] = new Card('S',1);
-		test.enemy_hand[1] = new Card('D',1);
-		test.enemy_hand[2] = new Card('D',5);
-		test.enemy_hand[3] = new Card('C',5);
-		test.enemy_hand[4] = new Card('H',1);
-		boolean rf9 = test.isPair(test.enemy_hand);
+		test.player_hand[0] = new Card('S',1);
+		test.player_hand[1] = new Card('D',1);
+		test.player_hand[2] = new Card('D',5);
+		test.player_hand[3] = new Card('C',5);
+		test.player_hand[4] = new Card('H',1);
+		boolean rf9 = test.isPair(test.player_hand);
 		assertEquals(rf9,false);
 		
 		//Case 10, two pairs, not a pair;
@@ -610,12 +610,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf2,true);
 
 		//Case 3, a straight flush with reverse order
-		test.enemy_hand[0] = new Card('C',13);
-		test.enemy_hand[1] = new Card('C',12);
-		test.enemy_hand[2] = new Card('C',11);
-		test.enemy_hand[3] = new Card('C',10);
-		test.enemy_hand[4] = new Card('C',9);
-		boolean rf3 = test.isStraight(test.enemy_hand);
+		test.player_hand[0] = new Card('C',13);
+		test.player_hand[1] = new Card('C',12);
+		test.player_hand[2] = new Card('C',11);
+		test.player_hand[3] = new Card('C',10);
+		test.player_hand[4] = new Card('C',9);
+		boolean rf3 = test.isStraight(test.player_hand);
 		assertEquals(rf3,true);
 
 		//Case 4, not a straight with one card missing at end
@@ -629,21 +629,21 @@ public class PokerTest extends TestCase {
 		
 
 		//Case 5, Not a straight flush (but is a straight)
-		test.enemy_hand[0] = new Card('S',9);
-		test.enemy_hand[1] = new Card('H',5);
-		test.enemy_hand[2] = new Card('H',7);
-		test.enemy_hand[3] = new Card('H',6);
-		test.enemy_hand[4] = new Card('H',8);
-		boolean rf5 = test.isStraight(test.enemy_hand);
+		test.player_hand[0] = new Card('S',9);
+		test.player_hand[1] = new Card('H',5);
+		test.player_hand[2] = new Card('H',7);
+		test.player_hand[3] = new Card('H',6);
+		test.player_hand[4] = new Card('H',8);
+		boolean rf5 = test.isStraight(test.player_hand);
 		assertEquals(rf5,true);
 
 		//Case 6, Not a straight flush (but is a straight)
-		test.enemy_hand[0] = new Card('H',2);
-		test.enemy_hand[1] = new Card('H',3);
-		test.enemy_hand[2] = new Card('S',4);
-		test.enemy_hand[3] = new Card('H',5);
-		test.enemy_hand[4] = new Card('H',6);
-		boolean rf6 = test.isStraight(test.enemy_hand);
+		test.player_hand[0] = new Card('H',2);
+		test.player_hand[1] = new Card('H',3);
+		test.player_hand[2] = new Card('S',4);
+		test.player_hand[3] = new Card('H',5);
+		test.player_hand[4] = new Card('H',6);
+		boolean rf6 = test.isStraight(test.player_hand);
 		assertEquals(rf6,true);
 		
 		//Case 6, Not a straight flush (but with same color)
@@ -658,7 +658,17 @@ public class PokerTest extends TestCase {
 	}
 
 	//Test cases for get one cards away from something.
-	
+	public void testoneFromFlushStraight() {
+		Poker test = new Poker();
+		int rf;//The result calculated by the method
+		int er;//The expected result
+		//Case 1, cards in 
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('D',6);
+		test.enemy_hand[2] = new Card('S',7);
+		test.enemy_hand[3] = new Card('C',8);
+		test.enemy_hand[4] = new Card('S',9);
+	}
 	public void testoneFromStraight() {
 		Poker test = new Poker();
 		//In this method, it is supposed to return the index of cards need to be changed.
