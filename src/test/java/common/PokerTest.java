@@ -431,6 +431,73 @@ public class PokerTest extends TestCase {
 		boolean rf7 = test.is3oK(test.enemy_hand);
 		assertEquals(rf7,false);
 	}
+	public void test2Pairs() {
+		Poker test = new Poker();
+		
+		//Case 1:Two pairs 2+2+1
+		test.enemy_hand[0] = new Card('H',1);
+		test.enemy_hand[1] = new Card('C',1);
+		test.enemy_hand[2] = new Card('H',2);
+		test.enemy_hand[3] = new Card('C',2);
+		test.enemy_hand[4] = new Card('H',3);
+		boolean rf1 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf1,true);
+		
+		//Case 2:Two pairs 2+1+2
+		test.enemy_hand[0] = new Card('C',4);
+		test.enemy_hand[1] = new Card('H',4);
+		test.enemy_hand[2] = new Card('C',5);
+		test.enemy_hand[3] = new Card('H',6);
+		test.enemy_hand[4] = new Card('C',6);
+		boolean rf2 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf2,true);
+		
+		//Case 3:Two pairs 2+2+1
+		test.enemy_hand[0] = new Card('D',7);
+		test.enemy_hand[1] = new Card('S',7);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('S',8);
+		test.enemy_hand[4] = new Card('D',9);
+		boolean rf3 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf3,true);
+		
+		//Case 4:Two pairs inserted in middle
+		test.enemy_hand[0] = new Card('S',10);
+		test.enemy_hand[1] = new Card('D',11);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('D',12);
+		test.enemy_hand[4] = new Card('S',12);
+		boolean rf4 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf4,true);
+
+		//Case 5:Two pairs inserted in the other way
+		//All colors and numbers are covered
+		test.enemy_hand[0] = new Card('H',13);
+		test.enemy_hand[1] = new Card('C',13);
+		test.enemy_hand[2] = new Card('S',1);
+		test.enemy_hand[3] = new Card('D',2);
+		test.enemy_hand[4] = new Card('S',1);
+		boolean rf5 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf5,true);
+
+		//Case 6:Not two pairs but full house
+		test.enemy_hand[0] = new Card('C',3);
+		test.enemy_hand[1] = new Card('S',3);
+		test.enemy_hand[2] = new Card('H',3);
+		test.enemy_hand[3] = new Card('S',4);
+		test.enemy_hand[4] = new Card('C',4);
+		boolean rf6 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf6,false);
+
+		//Case 7:Not two pairs but one pair
+		test.enemy_hand[0] = new Card('H',5);
+		test.enemy_hand[1] = new Card('D',5);
+		test.enemy_hand[2] = new Card('C',6);
+		test.enemy_hand[3] = new Card('S',7);
+		test.enemy_hand[4] = new Card('S',8);
+		boolean rf7 = test.is2Pair(test.enemy_hand);
+		assertEquals(rf7,false);
+	}
 	public void testStraight() {
 		Poker test = new Poker();		
 		//Case 1, a Royal flush with random order (it is still a straight)

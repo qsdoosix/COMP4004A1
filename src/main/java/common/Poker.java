@@ -205,4 +205,9 @@ public class Poker {
 		//If there are 3 cards with same number and the other two are not same, then it is 3 of a kind
 		return cardnumbercount[0]==3&&cardnumbercount[1]<2;
 	}
+
+	public boolean is2Pair(Card[] in) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
