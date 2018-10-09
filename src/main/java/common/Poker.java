@@ -278,6 +278,35 @@ public class Poker {
 
 	public int[] oneFrom4oK(Card[] in) {
 		// TODO Auto-generated method stub
-		return new int[] {-1,-1};
+		int[] wrong = {-1,-1};
+		if(is4oK(in)) {
+			return wrong;
+		}
+		int ones=0;
+		int three=0;
+		int[] re= new int[2];
+		countCard(in);
+		for(int i = 0; i < cardnumbercount.length;i++) {
+			if(cardnumbercount[i]==1) {
+				if(ones==re.length) {
+					//If there is more than 2 cards exist only once,then it is not one from 4 of a kind
+					return wrong;
+				}
+				for(int a = 0; a < in.length;a++) {
+					//Search for the card with same number as its index in counter (Because the index in counter is the number of card)
+					if(i==in[a].number) {
+						re[ones]=a+1;
+					}
+				}
+				ones++;
+			}else if(cardnumbercount[i]==3) {
+				three++;
+			}
+		}
+		if(ones==2&&three==1) {
+			return re;
+		}else {
+			return wrong;
+		}
 	}
 }
