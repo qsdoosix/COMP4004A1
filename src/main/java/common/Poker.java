@@ -200,6 +200,9 @@ public class Poker {
 
 	public boolean is3oK(Card[] in) {
 		// TODO Auto-generated method stub
-		return false;
+		countCard(in);
+		cardnumbercount=sortArray(cardnumbercount);
+		//If there are 3 cards with same number and the other two are not same, then it is 3 of a kind
+		return cardnumbercount[0]==3&&cardnumbercount[1]<2;
 	}
 }
