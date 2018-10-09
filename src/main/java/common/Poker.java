@@ -208,6 +208,9 @@ public class Poker {
 
 	public boolean is2Pair(Card[] in) {
 		// TODO Auto-generated method stub
-		return false;
+		countCard(in);
+		cardnumbercount=sortArray(cardnumbercount);
+		//If there are exactly 2 of 2 cards then it is two pairs
+		return cardnumbercount[0]==2&&cardnumbercount[1]==2;
 	}
 }
