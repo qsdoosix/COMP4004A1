@@ -687,7 +687,7 @@ public class PokerTest extends TestCase {
 
 		//Case 3, the missing card is bigger than the 4 cards in straight
 		test.enemy_hand[0] = new Card('H',8);
-		test.enemy_hand[1] = new Card('C',9);
+		test.enemy_hand[1] = new Card('D',9);
 		test.enemy_hand[2] = new Card('D',10);
 		test.enemy_hand[3] = new Card('S',11);
 		test.enemy_hand[4] = new Card('S',13);
@@ -697,13 +697,34 @@ public class PokerTest extends TestCase {
 		
 		//Case 4, the missing card is equal to one of the 4 cards in sequence
 		//In this case the first card will be changed.
-		test.enemy_hand[0] = new Card('H',3);
+		test.enemy_hand[0] = new Card('C',3);
 		test.enemy_hand[1] = new Card('H',4);
 		test.enemy_hand[2] = new Card('S',4);
 		test.enemy_hand[3] = new Card('C',5);
 		test.enemy_hand[4] = new Card('D',6);
 		rf = test.onefromstraight(test.enemy_hand);
 		er = 1;
+		assertEquals(er,rf);
+		
+
+		//Case 5, the missing card is between the sequence but smaller than the 4 cards in sequence
+		test.enemy_hand[0] = new Card('S',2);
+		test.enemy_hand[1] = new Card('S',6);
+		test.enemy_hand[2] = new Card('S',7);
+		test.enemy_hand[3] = new Card('C',9);
+		test.enemy_hand[4] = new Card('D',10);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = 0;
+		assertEquals(er,rf);
+		
+		//Case 6, the missing card is between the sequence but larger than the 4 cards in sequence
+		test.enemy_hand[0] = new Card('H',5);
+		test.enemy_hand[1] = new Card('H',7);
+		test.enemy_hand[2] = new Card('S',8);
+		test.enemy_hand[3] = new Card('C',9);
+		test.enemy_hand[4] = new Card('D',12);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = 4;
 		assertEquals(er,rf);
 	}
 	public void testoneFromFlush() {
