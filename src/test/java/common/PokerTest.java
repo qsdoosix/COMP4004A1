@@ -658,6 +658,71 @@ public class PokerTest extends TestCase {
 	}
 
 	//Test cases for get one cards away from something.
+	public void testoneFromRFlush() {
+		Poker test = new Poker();
+		int rf;//The result calculated by the method
+		int er;//The expected result
+		//Case 1, Spade Straight flush missing first card
+		test.enemy_hand[0] = new Card('D',5);
+		test.enemy_hand[1] = new Card('S',10);
+		test.enemy_hand[2] = new Card('S',11);
+		test.enemy_hand[3] = new Card('S',12);
+		test.enemy_hand[4] = new Card('S',13);
+		rf=test.oneFromRFlush(test.enemy_hand);
+		er=0;
+		assertEquals(rf,er);
+
+		//Case 2, Heart Straight flush missing last card
+		test.enemy_hand[0] = new Card('H',1);
+		test.enemy_hand[1] = new Card('S',5);
+		test.enemy_hand[2] = new Card('H',10);
+		test.enemy_hand[3] = new Card('H',11);
+		test.enemy_hand[4] = new Card('H',12);
+		rf=test.oneFromRFlush(test.enemy_hand);
+		er=0;
+		assertEquals(rf,er);
+		
+
+		//Case 3, Diamond Straight flush missing middle card
+		test.enemy_hand[0] = new Card('D',1);
+		test.enemy_hand[1] = new Card('H',8);
+		test.enemy_hand[2] = new Card('D',11);
+		test.enemy_hand[3] = new Card('D',12);
+		test.enemy_hand[4] = new Card('D',13);
+		rf=test.oneFromRFlush(test.enemy_hand);
+		er=0;
+		assertEquals(rf,er);
+
+		//Case 4, Club Straight flush missing one cards in middle equals to other
+		test.enemy_hand[0] = new Card('C',1);
+		test.enemy_hand[1] = new Card('C',10);
+		test.enemy_hand[2] = new Card('H',12);
+		test.enemy_hand[3] = new Card('C',12);
+		test.enemy_hand[4] = new Card('C',13);
+		rf=test.oneFromRFlush(test.enemy_hand);
+		er=0;
+		assertEquals(rf,er);
+		
+		//Case 5, Straight flush missing one cards equal with another
+		test.enemy_hand[0] = new Card('D',1);
+		test.enemy_hand[1] = new Card('H',1);
+		test.enemy_hand[2] = new Card('D',11);
+		test.enemy_hand[3] = new Card('D',12);
+		test.enemy_hand[4] = new Card('D',13);
+		rf=test.oneFromRFlush(test.enemy_hand);
+		er=0;
+		assertEquals(rf,er);
+
+		//Case 6, Straight flush missing one cards equal with another
+		test.enemy_hand[0] = new Card('H',10);
+		test.enemy_hand[1] = new Card('D',10);
+		test.enemy_hand[2] = new Card('D',11);
+		test.enemy_hand[3] = new Card('D',12);
+		test.enemy_hand[4] = new Card('D',13);
+		rf=test.oneFromRFlush(test.enemy_hand);
+		er=2;
+		assertEquals(rf,er);
+	}
 	public void testoneFromFHouse() {
 		Poker test = new Poker();
 		//Because the case about 3+1+1 will be interpreted as one card from 4 of a kind

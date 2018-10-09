@@ -332,4 +332,9 @@ public class Poker {
 			return -1;
 		}
 	}
+
+	public int oneFromRFlush(Card[] in) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
