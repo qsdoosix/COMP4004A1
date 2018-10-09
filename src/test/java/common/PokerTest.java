@@ -662,7 +662,7 @@ public class PokerTest extends TestCase {
 		Poker test = new Poker();
 		int rf;//The result calculated by the method
 		int er;//The expected result
-		//Case 1, Spade Straight flush missing first card
+		//Case 1, Spade Royal flush missing first card
 		test.enemy_hand[0] = new Card('D',5);
 		test.enemy_hand[1] = new Card('S',10);
 		test.enemy_hand[2] = new Card('S',11);
@@ -672,7 +672,7 @@ public class PokerTest extends TestCase {
 		er=0;
 		assertEquals(rf,er);
 
-		//Case 2, Heart Straight flush missing last card
+		//Case 2, Heart Royal flush missing last card
 		test.enemy_hand[0] = new Card('H',1);
 		test.enemy_hand[1] = new Card('S',5);
 		test.enemy_hand[2] = new Card('H',10);
@@ -683,7 +683,7 @@ public class PokerTest extends TestCase {
 		assertEquals(rf,er);
 		
 
-		//Case 3, Diamond Straight flush missing middle card
+		//Case 3, Diamond Royal flush missing middle card
 		test.enemy_hand[0] = new Card('D',1);
 		test.enemy_hand[1] = new Card('H',8);
 		test.enemy_hand[2] = new Card('D',11);
@@ -693,7 +693,7 @@ public class PokerTest extends TestCase {
 		er=1;
 		assertEquals(rf,er);
 
-		//Case 4, Club Straight flush missing one cards in middle equals to other
+		//Case 4, Club Royal flush missing one cards in middle equals to other
 		test.enemy_hand[0] = new Card('C',1);
 		test.enemy_hand[1] = new Card('C',10);
 		test.enemy_hand[2] = new Card('H',12);
@@ -703,7 +703,7 @@ public class PokerTest extends TestCase {
 		er=2;
 		assertEquals(rf,er);
 		
-		//Case 5, Straight flush missing one cards equal with another
+		//Case 5, Royal flush missing one cards equal with another
 		test.enemy_hand[0] = new Card('H',1);
 		test.enemy_hand[1] = new Card('D',1);
 		test.enemy_hand[2] = new Card('D',11);
@@ -713,14 +713,14 @@ public class PokerTest extends TestCase {
 		er=0;
 		assertEquals(rf,er);
 
-		//Case 6, Straight flush missing one cards equal with another
-		test.enemy_hand[0] = new Card('H',1);
+		//Case 6, Royal flush missing one cards equal with another
+		test.enemy_hand[0] = new Card('D',1);
 		test.enemy_hand[1] = new Card('D',10);
 		test.enemy_hand[2] = new Card('S',12);
 		test.enemy_hand[3] = new Card('D',12);
 		test.enemy_hand[4] = new Card('D',13);
 		rf=test.oneFromRFlush(test.enemy_hand);
-		er=0;
+		er=2;
 		assertEquals(rf,er);
 		
 		//Case 7, Not one from Royal Flush
@@ -730,7 +730,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[3] = new Card('D',8);
 		test.enemy_hand[4] = new Card('D',13);
 		rf=test.oneFromRFlush(test.enemy_hand);
-		er=0;
+		er=-1;
 		assertEquals(rf,er);
 	}
 	public void testoneFromFHouse() {

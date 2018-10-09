@@ -335,6 +335,50 @@ public class Poker {
 
 	public int oneFromRFlush(Card[] in) {
 		// TODO Auto-generated method stub
-		return 0;
+		countCard(in);
+		int cardinRF=0;
+		char maincolor='N';
+		String list= "SHDC";
+		for(int i = 0; i<cardcolorcount.length;i++) {
+			if(cardcolorcount[i]>=4) {
+				//If there is a color have 4 or more cards, then it is the color for the possible royal flush
+				maincolor=list.charAt(i);
+			}
+		}
+		if(maincolor=='N') {
+			//There isn't a color have 4 or more cards. So it must be away from flush, so it must not be a royal flush
+			return -1;
+		}
+		for(int i=0;i<5;i++) {
+			if(cardnumbercount[(9+i)%13]>0) {
+				//How many cards are there in the sequence.
+				cardinRF+=cardnumbercount[(9+i)%13];
+			}
+		}
+		if(cardinRF==5) {
+			//There is one card duplicated in the royal flush. (e.g. have two '10's)
+			//So search for the card not in the main color and change it
+			for(int i=0;i<in.length;i++) {
+				if(in[i].color!=maincolor) {
+					return i;
+				}
+			}
+		}else if(cardinRF==4) {
+			//There is one card outside the royal flush.(e.g. have a '5')
+			//So search for the card not in the royal flush sequence (10,J,Q,K,A).
+			for(int i = 0; i < in.length;i++) {
+				if( in[i].number!=1&&
+					in[i].number!=10&&
+					in[i].number!=11&&
+					in[i].number!=12&&
+					in[i].number!=13) {
+					return i;
+				}
+			}
+		}else {
+			//There are less than 4 cards in the royal flush sequence, so it can't be a royal flush
+			return -1;
+		}
+		return -1;
 	}
 }
