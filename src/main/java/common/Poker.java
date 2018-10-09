@@ -187,8 +187,10 @@ public class Poker {
 		return false;
 	}
 
-	public boolean isFlush(Card[] enemy_hand2) {
+	public boolean isFlush(Card[] in) {
 		// TODO Auto-generated method stub
-		return false;
+		countCard(in);
+		sortArray(cardcolorcount);
+		return(cardcolorcount[0]==5);
 	}
 }
