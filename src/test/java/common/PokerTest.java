@@ -177,7 +177,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[3] = new Card('H',6);
 		test.enemy_hand[4] = new Card('H',8);
 		boolean rf5 = test.isStraightFlush(test.enemy_hand);
-		assertEquals(rf5,true);
+		assertEquals(rf5,false);
 
 		//Case 6, Not a straight flush (but is a straight)
 		test.enemy_hand[0] = new Card('H',2);

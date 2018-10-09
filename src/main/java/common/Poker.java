@@ -165,7 +165,7 @@ public class Poker {
 			return false;
 		}
 		
-		return false;
+		return isStraight(in);
 	}
 
 	public boolean isStraight(Card[] in) {
