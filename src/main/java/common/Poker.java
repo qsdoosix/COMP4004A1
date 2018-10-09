@@ -272,6 +272,23 @@ public class Poker {
 
 	public int onefromFS(Card[] in) {
 		// TODO Auto-generated method stub
-		return 0;
+		//Re-use the code one from flush and one from straight
+		if(isStraightFlush(in)) {
+			return -1;
+		}
+		int r1=onefromflush(in);
+		int r2=onefromstraight(in);
+		System.out.println("r1 = "+r1+", r2 = "+r2);
+		if(r1==r2) {
+			//If changing a card can make it became flush and straight at same time, then it must be one card from straight flush.
+			return r1;
+		}else {
+			if(r1>-1&&r2>-1) {
+				if(in[r1].number==in[r2].number) {
+					return r1;
+				}
+			}
+		}
+		return -1;
 	}
 }
