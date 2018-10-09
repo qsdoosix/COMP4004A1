@@ -71,6 +71,7 @@ public class PokerTest extends TestCase {
 			assertEquals(in1[i].color,er1[i].color);
 		}
 	}
+//Test cases for interpreting hands.
 	public void testRoyalflush() {
 		Poker test = new Poker();
 		//Case 1, ordered case
@@ -363,7 +364,6 @@ public class PokerTest extends TestCase {
 		boolean rf8 = test.isFHouse(test.enemy_hand);
 		assertEquals(rf8,false);
 	}
-
 	public void test3oK() {
 		Poker test = new Poker();
 		
@@ -657,8 +657,57 @@ public class PokerTest extends TestCase {
 		
 	}
 
+	//Test cases for get one cards away from something.
+	public void testoneFromStraight() {
+		Poker test = new Poker();
+		//In this method, it is supposed to return the index of cards need to be changed.
+		int rf;//The result calculated by the method
+		int er;//The expected result
+		//Case 1, the missing card is smaller than the 4 cards in sequence
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('D',6);
+		test.enemy_hand[2] = new Card('S',7);
+		test.enemy_hand[3] = new Card('C',8);
+		test.enemy_hand[4] = new Card('S',9);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = 0;
+		assertEquals(er,rf);
+		
+		//Case 2, the missing card is equal to one of the 4 cards in straight
+		//And this case also covers the case that the missing card is in middle of a straight
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('C',5);
+		test.enemy_hand[2] = new Card('S',5);
+		test.enemy_hand[3] = new Card('H',8);
+		test.enemy_hand[4] = new Card('S',9);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = 3;
+		assertEquals(er,rf);
+
+		//Case 3, the missing card is bigger than the 4 cards in straight
+		test.enemy_hand[0] = new Card('H',8);
+		test.enemy_hand[1] = new Card('C',9);
+		test.enemy_hand[2] = new Card('D',10);
+		test.enemy_hand[3] = new Card('S',11);
+		test.enemy_hand[4] = new Card('S',13);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = 3;
+		assertEquals(er,rf);
+		
+		//Case 3, the missing card is equal to one of the 4 cards in sequence
+		//In this case the second card will be changed.
+		test.enemy_hand[0] = new Card('H',3);
+		test.enemy_hand[1] = new Card('H',4);
+		test.enemy_hand[2] = new Card('S',4);
+		test.enemy_hand[3] = new Card('C',5);
+		test.enemy_hand[4] = new Card('D',6);
+		rf = test.onefromstraight(test.enemy_hand);
+		er = 2;
+		assertEquals(er,rf);
+	}
 	public void testoneFromFlush() {
 		Poker test = new Poker();		
+		//In this method, it is supposed to return the index of cards need to be changed.
 		int rf;//The result calculated by the method
 		int er;//The expected result
 		//Case 1, the first card is not flush

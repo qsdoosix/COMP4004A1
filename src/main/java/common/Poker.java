@@ -236,4 +236,9 @@ public class Poker {
 		}
 		return -1;
 	}
+
+	public int onefromstraight(Card[] in) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
