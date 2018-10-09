@@ -238,6 +238,36 @@ public class Poker {
 	}
 
 	public int onefromstraight(Card[] in) {
-		return 0;
+		int re = -1;
+		//A free card to represent the "missing" card can be any card in sequence.
+		boolean freeCard = true;
+		for(int i = 0; i < in.length-1;i++) {
+			if(in[i+1].number==in[i].number) {
+				//Two cards with same number, mark the first one as free card.
+				re=i;
+			}else if(in[i+1].number-in[i].number==2) {
+				//Two cards with a gap between them, try to find a free card to fix it.
+				if(!freeCard) {
+					return -1;
+				}
+				if(i==3) {
+					//If it is already the last card, then it will be changed
+					re=4;
+				}
+				freeCard=false;
+			}else if(in[i+1].number-in[i].number>2) {
+				//Two cards with a large gap between them (can't be fixed with one free card)
+				//So it must be either the first card or the last card
+				if(i==0) {
+					//The First card will be changed
+					re=0;
+				}
+				if(i==3) {
+					//The last card will be changed
+					re=4;
+				}
+			}
+		}
+		return re;
 	}
 }

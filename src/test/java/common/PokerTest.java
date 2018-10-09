@@ -735,7 +735,7 @@ public class PokerTest extends TestCase {
 		test.enemy_hand[3] = new Card('C',9);
 		test.enemy_hand[4] = new Card('D',12);
 		rf = test.onefromstraight(test.enemy_hand);
-		er = -1;
+		er = -1;//-1 means it is not a one card from straight
 		assertEquals(er,rf);
 	}
 	public void testoneFromFlush() {
