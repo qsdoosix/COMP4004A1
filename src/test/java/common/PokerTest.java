@@ -200,11 +200,11 @@ public class PokerTest extends TestCase {
 	
 	public void testStraight() {
 		Poker test = new Poker();		
-		//Case 1, a straight flush with random order (it is still a straight)
+		//Case 1, a Royal flush with random order (it is still a straight)
 		test.enemy_hand[0] = new Card('S',11);
 		test.enemy_hand[1] = new Card('S',13);
 		test.enemy_hand[2] = new Card('S',10);
-		test.enemy_hand[3] = new Card('S',9);
+		test.enemy_hand[3] = new Card('S',1);
 		test.enemy_hand[4] = new Card('S',12);
 		boolean rf1 = test.isStraight(test.enemy_hand);
 		assertEquals(rf1,true);
