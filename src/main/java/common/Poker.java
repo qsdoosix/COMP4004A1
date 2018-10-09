@@ -191,4 +191,9 @@ public class Poker {
 		//If there are 4 cards with same number, then it must be 4 of a kind.
 		return cardnumbercount[0]==4;
 	}
+
+	public boolean isFHouse(Card[] in) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

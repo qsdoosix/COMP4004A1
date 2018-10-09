@@ -291,14 +291,77 @@ public class PokerTest extends TestCase {
 	}
 	public void testFullHouse() {
 		Poker test = new Poker();
-		//Case 1, Is a FullHouse
+		//Case 1, Is a FullHouse ordered 3 and then 2
 		test.enemy_hand[0] = new Card('H',6);
-		test.enemy_hand[1] = new Card('H',11);
-		test.enemy_hand[2] = new Card('H',12);
-		test.enemy_hand[3] = new Card('H',3);
-		test.enemy_hand[4] = new Card('H',1);
-		boolean rf1 = test.isFlush(test.enemy_hand);
+		test.enemy_hand[1] = new Card('D',6);
+		test.enemy_hand[2] = new Card('S',6);
+		test.enemy_hand[3] = new Card('C',3);
+		test.enemy_hand[4] = new Card('H',3);
+		boolean rf1 = test.isFHouse(test.enemy_hand);
 		assertEquals(rf1,true);
+		
+		//Case 2, Is a FullHouse but not ordered
+		test.enemy_hand[0] = new Card('C',1);
+		test.enemy_hand[1] = new Card('S',13);
+		test.enemy_hand[2] = new Card('D',1);
+		test.enemy_hand[3] = new Card('H',1);
+		test.enemy_hand[4] = new Card('C',13);
+		boolean rf2 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf2,true);
+		
+		//Case 3, Is a FullHouse ordered 2 and then 3
+		test.enemy_hand[0] = new Card('H',2);
+		test.enemy_hand[1] = new Card('C',2);
+		test.enemy_hand[2] = new Card('H',12);
+		test.enemy_hand[3] = new Card('S',12);
+		test.enemy_hand[4] = new Card('D',12);
+		boolean rf3 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf3,true);
+		
+		//Case 4, Not a full house
+		test.enemy_hand[0] = new Card('D',1);
+		test.enemy_hand[1] = new Card('H',3);
+		test.enemy_hand[2] = new Card('C',2);
+		test.enemy_hand[3] = new Card('C',11);
+		test.enemy_hand[4] = new Card('S',12);
+		boolean rf4 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf4,false);
+		
+		//Case 5, Is a FullHouse but in different order
+		test.enemy_hand[0] = new Card('C',13);
+		test.enemy_hand[1] = new Card('S',1);
+		test.enemy_hand[2] = new Card('D',13);
+		test.enemy_hand[3] = new Card('H',1);
+		test.enemy_hand[4] = new Card('C',13);
+		boolean rf5 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf5,true);
+		
+		//Case 6, Is not a FullHouse with 1+2+2
+		test.enemy_hand[0] = new Card('C',10);
+		test.enemy_hand[1] = new Card('S',8);
+		test.enemy_hand[2] = new Card('D',6);
+		test.enemy_hand[3] = new Card('H',8);
+		test.enemy_hand[4] = new Card('C',6);
+		boolean rf6 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf6,false);
+		
+		//Case 7, Is not a FullHouse with 2+1+2
+		test.enemy_hand[0] = new Card('C',8);
+		test.enemy_hand[1] = new Card('S',8);
+		test.enemy_hand[2] = new Card('D',6);
+		test.enemy_hand[3] = new Card('H',4);
+		test.enemy_hand[4] = new Card('C',4);
+		boolean rf7 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf7,false);
+		
+		//Case 8, Is not a FullHouse with 2+2+1
+		test.enemy_hand[0] = new Card('C',9);
+		test.enemy_hand[1] = new Card('S',9);
+		test.enemy_hand[2] = new Card('D',7);
+		test.enemy_hand[3] = new Card('H',7);
+		test.enemy_hand[4] = new Card('C',11);
+		boolean rf8 = test.isFHouse(test.enemy_hand);
+		assertEquals(rf8,false);
 	}
 	
 	public void testStraight() {
