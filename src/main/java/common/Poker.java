@@ -181,12 +181,11 @@ public class Poker {
 	public boolean isFlush(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
-		sortArray(cardcolorcount);
+		cardcolorcount=sortArray(cardcolorcount);
 		return(cardcolorcount[0]==5);
 	}
 
-	public boolean is4oK(Card[] enemy_hand2) {
-		// TODO Auto-generated method stub
+	public boolean is4oK(Card[] in) {
 		return false;
 	}
 }

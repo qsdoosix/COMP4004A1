@@ -55,7 +55,6 @@ public class PokerTest extends TestCase {
 			assertEquals(ern[i],test.cardnumbercount[i]);
 		}
 	}
-
 	public void testSort() {
 		Poker test = new Poker();
 		Card[] in1 = new Card[5];
@@ -72,7 +71,6 @@ public class PokerTest extends TestCase {
 			assertEquals(in1[i].color,er1[i].color);
 		}
 	}
-	
 	public void testRoyalflush() {
 		Poker test = new Poker();
 		//Case 1, ordered case
@@ -129,7 +127,6 @@ public class PokerTest extends TestCase {
 		boolean rf6 = test.isRoyalFlush(test.enemy_hand);
 		assertEquals(rf6,false);
 	}
-	
 	public void testStraightFlush() {
 		Poker test = new Poker();
 		
