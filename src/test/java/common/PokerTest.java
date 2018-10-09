@@ -76,6 +76,63 @@ public class PokerTest extends TestCase {
 		}
 	}
 	
+	public void testRoyalflush() {
+		Poker test = new Poker();
+		//Case 1, ordered case
+		test.enemy_hand[0] = new Card('H',10);
+		test.enemy_hand[1] = new Card('H',11);
+		test.enemy_hand[2] = new Card('H',12);
+		test.enemy_hand[3] = new Card('H',13);
+		test.enemy_hand[4] = new Card('H',1);
+		boolean rf1 = test.isRoyalFlush();
+		assertEquals(rf1,true);
+		
+		//Case 2, reverse ordered case
+		test.enemy_hand[0] = new Card('D',1);
+		test.enemy_hand[1] = new Card('D',13);
+		test.enemy_hand[2] = new Card('D',12);
+		test.enemy_hand[3] = new Card('D',11);
+		test.enemy_hand[4] = new Card('D',10);
+		boolean rf2 = test.isRoyalFlush();
+		assertEquals(rf2,true);
+		
+		//Case 3, mix ordered case
+		test.enemy_hand[0] = new Card('S',13);
+		test.enemy_hand[1] = new Card('S',11);
+		test.enemy_hand[2] = new Card('S',1);
+		test.enemy_hand[3] = new Card('S',12);
+		test.enemy_hand[4] = new Card('S',10);
+		boolean rf3 = test.isRoyalFlush();
+		assertEquals(rf3,true);
+
+		//Case 4, mix ordered case 2
+		test.enemy_hand[0] = new Card('C',11);
+		test.enemy_hand[1] = new Card('C',13);
+		test.enemy_hand[2] = new Card('C',10);
+		test.enemy_hand[3] = new Card('C',1);
+		test.enemy_hand[4] = new Card('C',12);
+		boolean rf4 = test.isRoyalFlush();
+		assertEquals(rf4,true);
+		
+		//Case 5, Not royal flush case because of color (but it is a straight)
+		test.enemy_hand[0] = new Card('S',11);
+		test.enemy_hand[1] = new Card('S',13);
+		test.enemy_hand[2] = new Card('C',10);
+		test.enemy_hand[3] = new Card('S',1);
+		test.enemy_hand[4] = new Card('S',12);
+		boolean rf5 = test.isRoyalFlush();
+		assertEquals(rf5,false);
+		
+		//Case 6, Not royal flush case because of number (but it is a straight flush)
+		test.enemy_hand[0] = new Card('S',11);
+		test.enemy_hand[1] = new Card('S',13);
+		test.enemy_hand[2] = new Card('S',10);
+		test.enemy_hand[3] = new Card('S',9);
+		test.enemy_hand[4] = new Card('S',12);
+		boolean rf6 = test.isRoyalFlush();
+		assertEquals(rf6,false);
+	}
+	
 	public void testAnalyse() {	
 		Poker test = new Poker();
 		//Case 1, one card from straight flush by the end
