@@ -156,16 +156,7 @@ public class Poker {
 	}
 
 	public boolean isStraightFlush(Card[] in) {
-		sortArray(in);
-		countCard(in);
-		sortArray(cardcolorcount);
-		sortArray(cardnumbercount);
-		if(cardcolorcount[0]<5) {
-			//The 5 cards are not in same color, so it can't be a straight flush;
-			return false;
-		}
-		
-		return isStraight(in);
+		return isFlush(in)&&isStraight(in);
 	}
 
 	public boolean isStraight(Card[] in) {
