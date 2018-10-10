@@ -1436,10 +1436,10 @@ public class PokerTest extends TestCase {
 
 		//Case 8:5 single cards
 		test.enemy_hand[0] = new Card('D',4);
-		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[1] = new Card('H',5);
 		test.enemy_hand[2] = new Card('D',8);
 		test.enemy_hand[3] = new Card('H',10);
-		test.enemy_hand[4] = new Card('S',12);
+		test.enemy_hand[4] = new Card('S',11);
 		rf = test.findSingle(test.enemy_hand);
 		er[0] = 3;
 		er[1] = 0;

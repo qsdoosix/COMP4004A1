@@ -504,6 +504,47 @@ public class Poker {
 		displayHand(isEnemy);
 	}
 	public int[] findSingle(Card[] in) {
+		int[] re = {-1,-1,-1,-1};
+		if(is2Pair(in)) {
+			countCard(in);
+			re[0]=1;//One card need to be changed
+			for(int i = 0;i<cardnumbercount.length;i++) {
+				if(cardnumbercount[i]==1){//i is the number of single card in hand
+					for(int a=0;a<in.length;a++) {
+						if(in[a].number==i+1) {
+							re[1]=a;
+							return re;
+						}
+					}
+				}
+			}
+		}else if(isPair(in)) {
+			countCard(in);
+			re[0]=3;//Three cards need to be changed
+			int index = 1;
+			for(int i = 0;i<in.length-1;i++) {
+				if(in[i].number==in[i+1].number) {
+					i++;//Skip the paired card
+				}else {
+					re[index]=i;
+					index++;
+				}
+			}
+			//The in[4] is not counted in for loop
+			if(in[3].number!=in[4].number) {
+				re[index]=4;
+			}
+			return re;
+		}else {
+			//Change 3 smallest card
+			//Because the input should be sorted, so just return the first 3 cards.
+			re[0]=3;
+			re[1]=0;
+			re[2]=1;
+			re[3]=2;
+			return re;
+		}
+		//This return is not supposed to be used
 		return null;
 	}
 }
