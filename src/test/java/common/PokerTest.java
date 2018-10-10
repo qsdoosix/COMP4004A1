@@ -1451,14 +1451,23 @@ public class PokerTest extends TestCase {
 	}
 	public void testAnalyse() throws IOException {	
 		Poker test = new Poker("src/main/resources/Cards2.txt");
-		test.initializegame();
+		int numtests=26;
 		//Case 1, AIP get 1 card away from Royal Flush
-		System.out.println("\n\nTesting hand analyzer");
+		System.out.println("\nTesting hand analyzer");
 		//The analyzer will read card for both player and make decisions then determine the winner.
-		test.Analyse();
-		//0 is the player wins, 1 is the AIP wins
-//		assertEquals(0, test.winner);
-		test.nextRound();
+		int[] ar;
+		int[] er=new int [4];
+		for(int i = 0 ; i <numtests;i++) {
+			test.nextRound();
+			ar=test.Analyse();
+			for(int a = 0; a<4;a++) {
+				er[a]=test.card_buffer[test.num_card-4+a].number;
+				if(er[a]==10) {
+					er[a]=0;
+				}
+				assertEquals(er[a],ar[a]);
+			}
+		}
 	}
 	public void testCompareHand() throws IOException {
 		Poker test = new Poker("src/main/resources/Cards3.txt");
@@ -1571,5 +1580,4 @@ public class PokerTest extends TestCase {
 				}
 			}
 	}
-
 }

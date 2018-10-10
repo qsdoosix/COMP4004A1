@@ -127,7 +127,8 @@ public class Poker {
 		Poker game = new Poker("src/main/resources/Cards1.txt");
 	}
 
-	public void Analyse() {
+	public int[] Analyse() {
+		return null;
 	}
 	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
