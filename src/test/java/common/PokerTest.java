@@ -1329,12 +1329,12 @@ public class PokerTest extends TestCase {
 			assertEquals(er[i].number,test.enemy_hand[i].number);
 		}
 	}
-	/*
+	
 	public void testAnalyse() throws IOException {	
-		Poker test = new Poker();
+		Poker test = new Poker("src/main/resources/Cards2.txt");
+		test.initializegame();
 		//Case 1, AIP get 1 card away from Royal Flush
 		System.out.println("\n\nTesting hand analyzer");
-		test.initializegame("src/main/resources/Cards2.txt");
 		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
 		int[] er1 = {1,4};
 		int[] ar1 = test.Analyse(test.enemy_hand);
@@ -1342,5 +1342,5 @@ public class PokerTest extends TestCase {
 			assertEquals(er1[i],ar1[i]);
 		}
 	}
-*/
+
 }
