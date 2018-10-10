@@ -381,4 +381,9 @@ public class Poker {
 		}
 		return -1;
 	}
+
+	public int[] change3oS(Card[] in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -800,7 +800,76 @@ public class PokerTest extends TestCase {
 		er=-1;
 		assertEquals(rf,er);
 	}
-	
+	public void testchange3oS() {
+		Poker test = new Poker();
+		int[] rf;//The result calculated by the method
+		int er[]=new int[2];//The expected result
+		//Returns the two cards going to be changed
+		//Test case 1, the first two cards is needed to be changed
+		test.enemy_hand[0] = new Card('S',1);
+		test.enemy_hand[1] = new Card('D',1);
+		test.enemy_hand[2] = new Card('C',1);
+		test.enemy_hand[3] = new Card('C',2);
+		test.enemy_hand[4] = new Card('C',3);
+		rf=test.change3oS(test.enemy_hand);
+		er[0]=0;
+		er[1]=1;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+		
+		//Test case 2, the last two cards is needed to be changed
+		test.enemy_hand[0] = new Card('S',4);
+		test.enemy_hand[1] = new Card('S',7);
+		test.enemy_hand[2] = new Card('S',9);
+		test.enemy_hand[3] = new Card('H',10);
+		test.enemy_hand[4] = new Card('D',11);
+		rf=test.change3oS(test.enemy_hand);
+		er[0]=3;
+		er[1]=4;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Test case 3, one cards in middle is needed to be changed
+		test.enemy_hand[0] = new Card('S',5);
+		test.enemy_hand[1] = new Card('D',6);
+		test.enemy_hand[2] = new Card('D',7);
+		test.enemy_hand[3] = new Card('S',10);
+		test.enemy_hand[4] = new Card('D',10);
+		rf=test.change3oS(test.enemy_hand);
+		er[0]=0;
+		er[1]=3;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Test case 4, two cards in middle is needed to be changed
+		test.enemy_hand[0] = new Card('C',5);
+		test.enemy_hand[1] = new Card('S',7);
+		test.enemy_hand[2] = new Card('C',7);
+		test.enemy_hand[3] = new Card('S',10);
+		test.enemy_hand[4] = new Card('C',12);
+		rf=test.change3oS(test.enemy_hand);
+		er[0]=1;
+		er[1]=3;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Test case 5, two cards in middle is needed to be changed
+		test.enemy_hand[0] = new Card('H',5);
+		test.enemy_hand[1] = new Card('H',7);
+		test.enemy_hand[2] = new Card('C',8);
+		test.enemy_hand[3] = new Card('S',10);
+		test.enemy_hand[4] = new Card('H',12);
+		rf=test.change3oS(test.enemy_hand);
+		er[0]=2;
+		er[1]=3;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+	}
 	public void testoneFrom4oK() {
 		Poker test = new Poker();
 		int[] rf;//The result calculated by the method
@@ -1090,7 +1159,6 @@ public class PokerTest extends TestCase {
 	*/
 	//The method cardcount() is to count how many of each color of card is in array.
 	public void testCardcount() {
-
 		Poker test = new Poker();
 		//The first test is to test the case that all card input is Spade.
 		//The input for first test
