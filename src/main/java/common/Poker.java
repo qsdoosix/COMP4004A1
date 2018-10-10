@@ -53,18 +53,27 @@ public class Poker {
 		}
 		readCard(line);
 		br.close();
-		//Give player 5 cards for AI to beat.
-		for(int i = 0; i < 5;i++) {
-			player_hand[i]=drawCard();
-			}
-		player_hand=sortArray(player_hand);
-		//Give AI 5 cards
-		for(int i = 0; i < 5;i++) {
-			enemy_hand[i]=drawCard();
-			}
-		enemy_hand=sortArray(enemy_hand);
-		System.out.println("Displaying both player's hand after drawing the card");
-		displayHand();
+		nextRound();
+	}
+	
+	public void nextRound() {
+		if(card_index<num_card-15) {
+			System.out.println("\n\n Starting new round");
+			//Give player 5 cards for AI to beat.
+			for(int i = 0; i < 5;i++) {
+				player_hand[i]=drawCard();
+				}
+			player_hand=sortArray(player_hand);
+			//Give AI 5 cards
+			for(int i = 0; i < 5;i++) {
+				enemy_hand[i]=drawCard();
+				}
+			enemy_hand=sortArray(enemy_hand);
+			System.out.println("Displaying both player's hand after drawing the card");
+			displayHand();
+		}else {
+			System.out.println("No enough cards in the deck");
+		}
 	}
 	
 	public Card drawCard() {
