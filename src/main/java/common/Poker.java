@@ -10,6 +10,7 @@ public class Poker {
 	int card_index=0;
 	int num_card=0;
 	BufferedReader br;
+	int winner = -1;//0 is player and 1 is AIP
 	
 	int[] cardnumbercount = new int[13];
 	int[] cardcolorcount = new int[4];
@@ -48,37 +49,32 @@ public class Poker {
 	}
 	
 	public void initializegame() throws IOException {
-		//Load cards from file
-	    String line= br.readLine();
-		if(line==null) {
-			//Something went wrong
-			System.out.println("Empty file");
-			System.exit(-1);
-		}
-		readCard(line);
-		br.close();
 		nextRound();
 	}
 	
 	public void nextRound() {
-		if(card_index<num_card-13) {
-			System.out.println("\n\nStarting new round");
-			//Give player 5 cards for AI to beat.
-			for(int i = 0; i < 5;i++) {
-				player_hand[i]=drawCard();
-				}
-			player_hand=sortArray(player_hand);
-			//Give AI 5 cards
-			for(int i = 0; i < 5;i++) {
-				enemy_hand[i]=drawCard();
-				}
-			enemy_hand=sortArray(enemy_hand);
-			System.out.println("Displaying both player's hand after drawing the card");
-			displayHand(false);
-			displayHand(true);
-		}else {
-			System.out.println("No enough cards in the deck to start new round");
+		card_index=0;
+		num_card=0;
+		try {
+			readCard(br.readLine());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		System.out.println("\n\nStarting new round");
+		//Give player 5 cards for AI to beat.
+		for(int i = 0; i < 5;i++) {
+			player_hand[i]=drawCard();
+			}
+		player_hand=sortArray(player_hand);
+		//Give AI 5 cards
+		for(int i = 0; i < 5;i++) {
+			enemy_hand[i]=drawCard();
+			}
+		enemy_hand=sortArray(enemy_hand);
+		System.out.println("Displaying both player's hand after drawing the card");
+		displayHand(false);
+		displayHand(true);
 	}
 	
 	public Card drawCard() {
@@ -548,5 +544,39 @@ public class Poker {
 		}
 		//This return is not supposed to be used
 		return null;
+	}
+	public Card maxCard(Card[]in) {
+		//Returns the max number among input cards
+		int max=0;
+		for(int i =0;i<in.length;i++) {
+			if(in[i].number==1) {
+				return in[i];//Ace is considered as 14 and it is the biggest single card
+			}else if(in[i].number>in[max].number){
+				max=i;
+			}
+		}
+		System.out.println(max);
+		return in[max];
+	}
+	public Card mostCard(Card[] in) {
+		countCard(in);
+		int most=12;
+		//Go from large to small
+		for(int i = cardnumbercount.length-1;i>-1;i--) {
+			System.out.println("i= "+i+" cardnumbercount[i] "+cardnumbercount[i]+" cardnumbercount[most] is "+cardnumbercount[most]);
+			if(cardnumbercount[i]>cardnumbercount[most]) {
+				most=i;
+			}
+		}
+		for(int i = in.length-1; i>0;i--) {
+			System.out.println("The most is "+most+" in[i].number is "+in[i].number);
+			if(in[i].number==most+1) {
+				return in[i];
+			}
+		}
+		//Not supposed to get there
+		return null;
+	}
+	public void compareHand() {
 	}
 }

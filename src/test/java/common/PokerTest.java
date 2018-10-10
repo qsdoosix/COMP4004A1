@@ -1454,8 +1454,109 @@ public class PokerTest extends TestCase {
 		test.initializegame();
 		//Case 1, AIP get 1 card away from Royal Flush
 		System.out.println("\n\nTesting hand analyzer");
-		//The analyzer will read card for both player and determine the winner.
+		//The analyzer will read card for both player and make decisions then determine the winner.
 		test.Analyse();
+		//0 is the player wins, 1 is the AIP wins
+//		assertEquals(0, test.winner);
+		test.nextRound();
+	}
+	public void testCompareHand() throws IOException {
+		Poker test = new Poker("src/main/resources/Cards3.txt");
+		System.out.println("\nTesting compare hand");
+		int er;
+		
+		
+		//Case 1, Royal Flush beats everything
+		for(int i = 0; i < 8;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win 4 rounds, the AIP win 4 rounds.
+			if(i<4) {
+				assertEquals(test.winner,0);
+			}else {
+				assertEquals(test.winner,1);
+			}
+		}
+		//Case 2, Straight flush beats any hand but royal flush
+		for(int i = 0; i < 7;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win 4 rounds, the AIP win 3 rounds.
+			if(i<4) {
+				assertEquals(test.winner,0);
+			}else {
+				assertEquals(test.winner,1);
+			}
+		}
+
+		//Case 3, 4-of-a-kind beats any hand but royal flush and Straight flush
+		for(int i = 0; i < 6;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win all 6 rounds
+			assertEquals(test.winner,0);
+		}
+		
+		//Case 4, Full house beats any hand but royal flush, straight flush and 4-of-a-kind
+		for(int i = 0; i < 6;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win 3 rounds, the AIP win 3 rounds.
+			if(i<3) {
+				assertEquals(test.winner,0);
+			}else {
+				assertEquals(test.winner,1);
+			}
+		}
+
+		//Case 5, Flush beats straight, 3-of-a-kind, two pairs, one pair, and high card
+		for(int i = 0; i < 5;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win 3 rounds, the AIP win 2 rounds.
+			if(i<3) {
+				assertEquals(test.winner,0);
+			}else {
+				assertEquals(test.winner,1);
+			}
+		}
+
+		//Case 6, Straight beats 3-of-a-kind, two pairs, one pair, and high card
+		for(int i = 0; i < 4;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win 2 rounds, the AIP win 2 rounds.
+			if(i<2) {
+				assertEquals(test.winner,0);
+			}else {
+				assertEquals(test.winner,1);
+			}
+		}
+
+		//Case 7, 3-of-a-kind, beats two pairs, one pair, and high card
+		for(int i = 0; i < 3;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win all 3 rounds
+			assertEquals(test.winner,0);
+		}
+		
+		//Case 8, Two pairs beats one pair and high card
+		for(int i = 0; i < 2;i++) {
+			test.nextRound();
+			test.compareHand();
+			//The player win 1 round and enemy win 1 round
+			if(i<1) {
+				assertEquals(test.winner,0);
+			}else {
+				assertEquals(test.winner,1);
+			}
+		}
+		//Case 9, One pair beats high card
+			test.nextRound();
+			test.compareHand();
+			//The player win
+			assertEquals(test.winner,0);
 	}
 
 }
