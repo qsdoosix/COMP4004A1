@@ -22,7 +22,17 @@ public class Card implements Comparable<Card> {
 		}else if (color == 'D') {
 			s+="Diamond ";
 		}
-		s+=number;
+		if(number==1) {
+			s+='A';
+		}else if(number==11) {
+			s+='J';
+		}else if(number==12) {
+			s+='Q';
+		}else if(number==13) {
+			s+='K';
+		}else{
+			s+=number;
+		}
 		return s;
 	}
 

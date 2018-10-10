@@ -63,6 +63,8 @@ public class Poker {
 			enemy_hand[i]=drawCard();
 			}
 		enemy_hand=sortArray(enemy_hand);
+		System.out.println("Displaying both player's hand after drawing the card");
+		displayHand();
 	}
 	
 	public Card drawCard() {
@@ -454,5 +456,19 @@ public class Poker {
 		}
 		
 		return re;
+	}
+	public void displayHand() {
+		player_hand=sortArray(player_hand);
+		enemy_hand=sortArray(enemy_hand);
+		System.out.println("Printing player's hand");
+		for(Card c:player_hand) {
+			System.out.print(c+", ");
+		}
+		System.out.println();
+		System.out.println("Printing AIP's hand");
+		for(Card c:enemy_hand) {
+			System.out.print(c+", ");
+		}
+		System.out.println();
 	}
 }

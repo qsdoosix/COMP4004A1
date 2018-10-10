@@ -36,6 +36,7 @@ public class PokerTest extends TestCase {
 		//There should be no card when the game is started
 		assertEquals(test.num_card,0);
 		try {
+			System.out.println("Testing initialize game");
 			test.initializegame("src/main/resources/Cards1.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -1210,23 +1211,6 @@ public class PokerTest extends TestCase {
 		er = -1;//-1 means it is not one card from flush
 		assertEquals(er,rf);
 	}
-	/*
-	public void testAnalyse() {	
-		Poker test = new Poker();
-		//Case 1, one card from straight flush by the end
-		test.enemy_hand[0] = new Card('H',2);
-		test.enemy_hand[1] = new Card('H',3);
-		test.enemy_hand[2] = new Card('H',4);
-		test.enemy_hand[3] = new Card('H',5);
-		test.enemy_hand[4] = new Card('S',9);
-		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
-		int[] er1 = {1,4};
-		int[] ar1 = test.Analyse(test.enemy_hand);
-		for(int i = 0; i < er1.length;i++) {
-			assertEquals(er1[i],ar1[i]);
-		}
-	}
-	*/
 	//The method cardcount() is to count how many of each color of card is in array.
 	public void testCardcount() {
 		Poker test = new Poker();
@@ -1273,4 +1257,19 @@ public class PokerTest extends TestCase {
 			assertEquals(ern3[i],test.cardnumbercount[i]);
 		}
 	}
+
+	//
+	public void testAnalyse() throws IOException {	
+		Poker test = new Poker();
+		//Case 1, AIP get 1 card away from Royal Flush
+		System.out.println("\n\nTesting hand analyzer");
+		test.initializegame("src/main/resources/Cards2.txt");
+		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
+		int[] er1 = {1,4};
+		int[] ar1 = test.Analyse(test.enemy_hand);
+		for(int i = 0; i < er1.length;i++) {
+			assertEquals(er1[i],ar1[i]);
+		}
+	}
+
 }
