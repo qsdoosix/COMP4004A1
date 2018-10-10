@@ -1466,7 +1466,6 @@ public class PokerTest extends TestCase {
 				if(er[a]==10) {
 					er[a]=0;
 				}
-				System.out.println("at "+a+", "+test.card_buffer[test.num_card-4+a]);
 				assertEquals(er[a],ar[a]);
 			}
 		}
