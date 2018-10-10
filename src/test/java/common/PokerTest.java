@@ -1257,8 +1257,78 @@ public class PokerTest extends TestCase {
 			assertEquals(ern3[i],test.cardnumbercount[i]);
 		}
 	}
+	
+	public void testChangeCard() throws IOException {
+		Poker test = new Poker();
+		Card[] er = new Card[5];
+		
+		//Test case 1, change the first card in hand
+		test.enemy_hand[0]=new Card('C',4);
+		test.enemy_hand[1]=new Card('D',10);
+		test.enemy_hand[2]=new Card('D',11);
+		test.enemy_hand[3]=new Card('D',12);
+		test.enemy_hand[4]=new Card('D',13);
+		test.card_buffer[0]=new Card('D',1);
+		//The boolean is "is this changing card for enemy hand"
+		//The array is how many cards and which cards should be changed.
+		//In this case, it says "Change 1 card at index 4 of the enemy hand"
+		test.changeCard(true,new int[]{1,0});
+		er[0]=new Card('D',1);
+		er[1]=new Card('D',10);
+		er[2]=new Card('D',11);
+		er[3]=new Card('D',12);
+		er[4]=new Card('D',13);
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(er[i].color,test.enemy_hand[i].color);
+			assertEquals(er[i].number,test.enemy_hand[i].number);
+		}
+		
 
-	//
+		//Test case 2, change the first two cards in hand
+		test.player_hand[0]=new Card('C',2);
+		test.player_hand[1]=new Card('S',3);
+		test.player_hand[2]=new Card('S',5);
+		test.player_hand[3]=new Card('C',5);
+		test.player_hand[4]=new Card('D',5);
+		test.card_buffer[1]=new Card('H',5);
+		test.card_buffer[2]=new Card('H',13);
+		//In this case, it says "Change 2 card at index 0 and 1 of the player hand"
+		test.changeCard(false,new int[]{2,0,1});
+		er[0]=new Card('C',5);
+		er[1]=new Card('D',5);
+		er[2]=new Card('H',5);
+		er[3]=new Card('S',5);
+		er[4]=new Card('H',13);
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(er[i].color,test.player_hand[i].color);
+			assertEquals(er[i].number,test.player_hand[i].number);
+		}
+		
+
+		//Test case 3, change the last three cards in hand
+		//So all cards has been changed, and all possible cases (changing 1,2,3 cards) has been tested 
+		test.enemy_hand[0]=new Card('S',1);
+		test.enemy_hand[1]=new Card('H',1);
+		test.enemy_hand[2]=new Card('C',3);
+		test.enemy_hand[3]=new Card('H',6);
+		test.enemy_hand[4]=new Card('D',9);
+		//Note the card buffer is not always in order
+		test.card_buffer[3]=new Card('C',2);
+		test.card_buffer[4]=new Card('C',1);
+		test.card_buffer[5]=new Card('H',2);
+		//In this case, it says "Change 3 card at index 2,3 and 4 of the enemy hand"
+		test.changeCard(true,new int[]{3,2,3,4});
+		er[0]=new Card('C',1);
+		er[1]=new Card('H',1);
+		er[2]=new Card('S',1);
+		er[3]=new Card('C',2);
+		er[4]=new Card('H',2);
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(er[i].color,test.enemy_hand[i].color);
+			assertEquals(er[i].number,test.enemy_hand[i].number);
+		}
+	}
+	/*
 	public void testAnalyse() throws IOException {	
 		Poker test = new Poker();
 		//Case 1, AIP get 1 card away from Royal Flush
@@ -1271,5 +1341,5 @@ public class PokerTest extends TestCase {
 			assertEquals(er1[i],ar1[i]);
 		}
 	}
-
+*/
 }

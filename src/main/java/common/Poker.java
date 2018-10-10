@@ -57,8 +57,8 @@ public class Poker {
 	}
 	
 	public void nextRound() {
-		if(card_index<num_card-15) {
-			System.out.println("\n\n Starting new round");
+		if(card_index<num_card-13) {
+			System.out.println("\n\nStarting new round");
 			//Give player 5 cards for AI to beat.
 			for(int i = 0; i < 5;i++) {
 				player_hand[i]=drawCard();
@@ -72,7 +72,7 @@ public class Poker {
 			System.out.println("Displaying both player's hand after drawing the card");
 			displayHand();
 		}else {
-			System.out.println("No enough cards in the deck");
+			System.out.println("No enough cards in the deck to start new round");
 		}
 	}
 	
@@ -479,5 +479,9 @@ public class Poker {
 			System.out.print(c+", ");
 		}
 		System.out.println();
+	}
+
+	public void changeCard(boolean isEnemy, int[] in) {
+		// TODO Auto-generated method stub
 	}
 }
