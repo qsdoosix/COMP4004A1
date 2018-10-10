@@ -128,7 +128,35 @@ public class Poker {
 	}
 
 	public int[] Analyse() {
-		return null;
+		Card[] hand=enemy_hand;
+		int[] nothing = {0,0,0,0};
+		int[] re = {0,0,0,0};
+		if(isRoyalFlush(hand)) {
+			//Do nothing
+			return nothing;
+		}else if(isStraightFlush(hand)) {
+			//Do nothing
+			return nothing;
+		}else if(is4oK(hand)) {
+			//Do nothing
+			return nothing;
+		}else if(isFHouse(hand)) {
+			//Do nothing
+			return nothing;
+		}else if(isFlush(hand)) {
+			//Do nothing
+			return nothing;
+		}else if(isStraight(hand)) {
+			//Do nothing
+			return nothing;
+		}else{
+			re[1]=oneFromRFlush(hand);
+			if(re[1]!=-1){
+				//So the hand is one card from Royal Flush
+				re[0]=1;
+			}
+			return re;
+		}
 	}
 	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
