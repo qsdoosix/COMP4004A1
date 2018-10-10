@@ -154,8 +154,8 @@ public class Poker {
 			if(re[1]!=-1){
 				//So the hand is one card from Royal Flush
 				re[0]=1;
+				return re;
 			}
-			return re;
 		}
 	}
 	public boolean isRoyalFlush(Card[] in) {
