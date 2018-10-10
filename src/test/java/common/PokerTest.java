@@ -36,7 +36,7 @@ public class PokerTest extends TestCase {
 		//There should be no card when the game is started
 		assertEquals(test.num_card,0);
 		try {
-			test.initializegame();
+			test.initializegame("src/main/resources/Cards1.txt");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -41,9 +41,9 @@ public class Poker {
 		}
 	}
 	
-	public void initializegame() throws IOException {
+	public void initializegame(String in) throws IOException {
 		//Load cards from file
-		File file = new File("src/main/resources/Cards1.txt");
+		File file = new File(in);
 		BufferedReader br = new BufferedReader(new FileReader(file));
 	    String line= br.readLine();
 		if(line==null) {
@@ -113,7 +113,7 @@ public class Poker {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Poker game = new Poker();
-		game.initializegame();
+		game.initializegame("src/main/resources/Cards1.txt");
 	}
 
 	public int[] Analyse(Card[] in) {
@@ -424,10 +424,10 @@ public class Poker {
 		int[] re= {-1,-1};
 		countCard(in);
 		int cardindex=0;
-		for(int i = cardnumbercount.length-1;i>0;i--) {
+		for(int i = cardnumbercount.length-1;i>2;i--) {
 			if(cardnumbercount[i]>0&&cardnumbercount[i-1]>0&&cardnumbercount[i-2]>0) {
 				//The largest 3 cards in a sequence
-				if(cardnumbercount[i-3]>0) {
+				if(i>2&&cardnumbercount[i-3]>0) {
 					//There are 4 or more cards in sequence
 					return wrong;
 				}
@@ -437,17 +437,17 @@ public class Poker {
 						if(cardindex>2) return wrong;//If there is more than 2 cards need to be changed, return false
 						re[cardindex]=a;
 						cardindex++;
-					}else if(cardnumbercount[in[a].number-1]>1) {
-						//If there is more card at same number as card at index a, then it should be changed
-						if(cardindex>2) return wrong;
-						re[cardindex]=a;
-						cardindex++;
-						a++;//Skip the next card which is expected to be same as this one.
 					}else if(in[a].number>i+1) {
 						//if the card at index a is bigger than the maximum card in sequence, then it should be changed
 						if(cardindex>2) return wrong;
 						re[cardindex]=a;
 						cardindex++;
+					}else if(cardnumbercount[in[a].number-1]>1) {
+						//If there is more card at same number as card at index a, then it should be changed
+						if(cardindex>2) return wrong;
+						re[cardindex]=a;
+						cardindex++;
+						a++;//Skip the next card (which is expected to be same as this one)
 					}
 				}
 			}
