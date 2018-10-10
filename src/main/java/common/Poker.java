@@ -9,11 +9,17 @@ public class Poker {
 	Card[] enemy_hand = new Card[5];
 	int card_index=0;
 	int num_card=0;
+	BufferedReader br;
 	
 	int[] cardnumbercount = new int[13];
 	int[] cardcolorcount = new int[4];
 	
+	public Poker(String in) throws FileNotFoundException{
+		File file = new File(in);
+		br= new BufferedReader(new FileReader(file));
+	}
 	public Poker(){
+		//The empty constructor for testing purpose
 	}
 	
 	//Interpret the input line to cards and store into the card_buffer
@@ -41,10 +47,8 @@ public class Poker {
 		}
 	}
 	
-	public void initializegame(String in) throws IOException {
+	public void initializegame() throws IOException {
 		//Load cards from file
-		File file = new File(in);
-		BufferedReader br = new BufferedReader(new FileReader(file));
 	    String line= br.readLine();
 		if(line==null) {
 			//Something went wrong
@@ -124,8 +128,7 @@ public class Poker {
 	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		Poker game = new Poker();
-		game.initializegame("src/main/resources/Cards1.txt");
+		Poker game = new Poker("src/main/resources/Cards1.txt");
 	}
 
 	public int[] Analyse(Card[] in) {

@@ -1,5 +1,6 @@
 package common;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import junit.framework.TestCase;
@@ -31,13 +32,13 @@ public class PokerTest extends TestCase {
 			assertEquals(expected[i].number,test.card_buffer[i].number);
 		}
 	}
-	public void testinitialize() {
-		Poker test = new Poker();
+	public void testinitialize() throws FileNotFoundException {
+		Poker test = new Poker("src/main/resources/Cards1.txt");
 		//There should be no card when the game is started
 		assertEquals(test.num_card,0);
 		try {
 			System.out.println("Testing initialize game");
-			test.initializegame("src/main/resources/Cards1.txt");
+			test.initializegame();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
