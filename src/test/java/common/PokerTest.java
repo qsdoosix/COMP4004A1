@@ -436,11 +436,11 @@ public class PokerTest extends TestCase {
 	public void test2Pairs() {
 		Poker test = new Poker();
 		
-		//Case 1:Two pairs 2+2+1
+		//Case 1:Two pairs 1+2+2
 		test.enemy_hand[0] = new Card('H',1);
-		test.enemy_hand[1] = new Card('C',1);
+		test.enemy_hand[1] = new Card('C',2);
 		test.enemy_hand[2] = new Card('H',2);
-		test.enemy_hand[3] = new Card('C',2);
+		test.enemy_hand[3] = new Card('C',3);
 		test.enemy_hand[4] = new Card('H',3);
 		boolean rf1 = test.is2Pair(test.enemy_hand);
 		assertEquals(rf1,true);
@@ -1329,18 +1329,133 @@ public class PokerTest extends TestCase {
 			assertEquals(er[i].number,test.enemy_hand[i].number);
 		}
 	}
-	
+	public void testfindSingle() {
+		//This method is to find and return the single card(s) in the hand (1 for 2 pairs/3 for 1 pair or 5 single cards)
+		Poker test = new Poker();
+		int[] rf;//The result calculated by the method
+		int er[]=new int[4];//The expected result
+		//Returns the two cards going to be changed
+		//Case 1:Two pairs 1+2+2
+		test.enemy_hand[0] = new Card('H',1);
+		test.enemy_hand[1] = new Card('C',2);
+		test.enemy_hand[2] = new Card('H',2);
+		test.enemy_hand[3] = new Card('C',3);
+		test.enemy_hand[4] = new Card('H',3);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 1;
+		er[1] = 0;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+		
+		//Case 2:Two pairs 2+1+2
+		test.player_hand[0] = new Card('C',4);
+		test.player_hand[1] = new Card('H',4);
+		test.player_hand[2] = new Card('C',5);
+		test.player_hand[3] = new Card('H',6);
+		test.player_hand[4] = new Card('C',6);
+		rf = test.findSingle(test.player_hand);
+		er[0] = 1;
+		er[1] = 2;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+		
+		//Case 3:Two pairs 2+2+1
+		test.enemy_hand[0] = new Card('D',7);
+		test.enemy_hand[1] = new Card('S',7);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('S',8);
+		test.enemy_hand[4] = new Card('D',9);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 1;
+		er[1] = 4;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+		
+		//Case 4:One pair 2+1+1+1
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('S',4);
+		test.enemy_hand[2] = new Card('D',6);
+		test.enemy_hand[3] = new Card('S',8);
+		test.enemy_hand[4] = new Card('D',9);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 3;
+		er[1] = 2;
+		er[2] = 3;
+		er[3] = 4;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Case 5:One pair 1+2+1+1
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('H',5);
+		test.enemy_hand[2] = new Card('C',5);
+		test.enemy_hand[3] = new Card('D',7);
+		test.enemy_hand[4] = new Card('H',10);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 3;
+		er[1] = 0;
+		er[2] = 3;
+		er[3] = 4;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Case 6:One pair 1+1+2+1
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[2] = new Card('D',7);
+		test.enemy_hand[3] = new Card('S',7);
+		test.enemy_hand[4] = new Card('H',10);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 3;
+		er[1] = 0;
+		er[2] = 1;
+		er[3] = 4;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Case 7:One pair 1+1+1+2
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('H',11);
+		test.enemy_hand[4] = new Card('S',11);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 3;
+		er[1] = 0;
+		er[2] = 1;
+		er[3] = 2;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Case 8:5 single cards
+		test.enemy_hand[0] = new Card('D',4);
+		test.enemy_hand[1] = new Card('H',6);
+		test.enemy_hand[2] = new Card('D',8);
+		test.enemy_hand[3] = new Card('H',10);
+		test.enemy_hand[4] = new Card('S',12);
+		rf = test.findSingle(test.enemy_hand);
+		er[0] = 3;
+		er[1] = 0;
+		er[2] = 1;
+		er[3] = 2;
+		for(int i = 0; i < er[0]+1;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+	}
 	public void testAnalyse() throws IOException {	
 		Poker test = new Poker("src/main/resources/Cards2.txt");
 		test.initializegame();
 		//Case 1, AIP get 1 card away from Royal Flush
 		System.out.println("\n\nTesting hand analyzer");
-		//The return value is how much should we change, followed by the index to be changed. In this case it is change 1 card, the index is 4.
-		int[] er1 = {1,4};
-		int[] ar1 = test.Analyse(test.enemy_hand);
-		for(int i = 0; i < er1.length;i++) {
-			assertEquals(er1[i],ar1[i]);
-		}
+		//The analyzer will read card for both player and determine the winner.
+		test.Analyse();
 	}
 
 }

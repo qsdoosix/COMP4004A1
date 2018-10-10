@@ -131,9 +131,7 @@ public class Poker {
 		Poker game = new Poker("src/main/resources/Cards1.txt");
 	}
 
-	public int[] Analyse(Card[] in) {
-		//To analyse the input card (Should be 5 sorted cards) and decide what to do (Change or not)
-		return null;
+	public void Analyse() {
 	}
 	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
@@ -290,7 +288,6 @@ public class Poker {
 		}
 		return -1;
 	}
-
 	public int[] oneFrom4oK(Card[] in) {
 		// TODO Auto-generated method stub
 		int[] wrong = {-1,-1};
@@ -321,7 +318,6 @@ public class Poker {
 			return wrong;
 		}
 	}
-
 	public int onefromFHouse(Card[] in) {
 		// TODO Auto-generated method stub
 		//To make it one cards away from full house, it must have 2 pairs of cards and one single cards.
@@ -347,7 +343,6 @@ public class Poker {
 			return -1;
 		}
 	}
-
 	public int oneFromRFlush(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
@@ -396,7 +391,6 @@ public class Poker {
 		}
 		return -1;
 	}
-
 	public int[] change3oS(Card[] in) {
 		// TODO Auto-generated method stub
 		countCard(in);
@@ -429,7 +423,6 @@ public class Poker {
 		}
 		return re;
 	}
-
 	public int[] ThreeInSequence(Card[] in) {
 		// TODO Auto-generated method stub
 		//This one i don't want to take the case that the 3 cards are not adjacent.
@@ -487,7 +480,6 @@ public class Poker {
 		}
 		System.out.println();
 	}
-
 	public void changeCard(boolean isEnemy, int[] in) {
 		// TODO Auto-generated method stub
 		int cardstoChange=in[0];
@@ -510,5 +502,8 @@ public class Poker {
 		}
 		System.out.println("\nThe hand after exchanging cards");
 		displayHand(isEnemy);
+	}
+	public int[] findSingle(Card[] in) {
+		return null;
 	}
 }
