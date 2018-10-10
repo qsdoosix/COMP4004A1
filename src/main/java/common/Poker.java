@@ -161,6 +161,13 @@ public class Poker {
 				re[0]=1;
 				return re;
 			}
+			int[] temp = oneFrom4oK(hand);
+			if(temp[0]!=-1) {
+				for(int i = 0; i < temp.length;i++) {
+					re[i]=temp[i];
+				}
+				return re;
+			}
 		}
 		return null;
 	}
