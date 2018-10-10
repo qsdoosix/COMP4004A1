@@ -1259,7 +1259,7 @@ public class PokerTest extends TestCase {
 		}
 	}
 	
-	public void testChangeCard() throws IOException {
+	public void testChangeCard(){
 		Poker test = new Poker();
 		Card[] er = new Card[5];
 		
