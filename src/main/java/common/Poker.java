@@ -417,6 +417,42 @@ public class Poker {
 
 	public int[] ThreeInSequence(Card[] in) {
 		// TODO Auto-generated method stub
-		return null;
+		//This one i don't want to take the case that the 3 cards are not adjacent.
+		//(e.g) 3,5,6
+		//Because this is very unlikely to get a better hand in this case.
+		int[] wrong = {-1,-1};
+		int[] re= {-1,-1};
+		countCard(in);
+		int cardindex=0;
+		for(int i = cardnumbercount.length-1;i>0;i--) {
+			if(cardnumbercount[i]>0&&cardnumbercount[i-1]>0&&cardnumbercount[i-2]>0) {
+				//The largest 3 cards in a sequence
+				if(cardnumbercount[i-3]>0) {
+					//There are 4 or more cards in sequence
+					return wrong;
+				}
+				for(int a=0;a<in.length;a++) {
+					if(in[a].number<i-2) {
+						//If the card in input is smaller than the minimum card in sequence, then it should be changed.
+						if(cardindex>2) return wrong;//If there is more than 2 cards need to be changed, return false
+						re[cardindex]=a;
+						cardindex++;
+					}else if(cardnumbercount[in[a].number-1]>1) {
+						//If there is more card at same number as card at index a, then it should be changed
+						if(cardindex>2) return wrong;
+						re[cardindex]=a;
+						cardindex++;
+						a++;//Skip the next card which is expected to be same as this one.
+					}else if(in[a].number>i+1) {
+						//if the card at index a is bigger than the maximum card in sequence, then it should be changed
+						if(cardindex>2) return wrong;
+						re[cardindex]=a;
+						cardindex++;
+					}
+				}
+			}
+		}
+		
+		return re;
 	}
 }
