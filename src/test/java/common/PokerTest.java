@@ -659,7 +659,74 @@ public class PokerTest extends TestCase {
 
 	//Test cases for get one cards away from something.
 	public void test3inSequence() {
+		Poker test = new Poker();
+		int[] rf;//The result calculated by the method
+		int er[]=new int[2];//The expected result
+		//Returns the two cards going to be changed
+		//Test case 1, the first two cards is needed to be changed
+		test.enemy_hand[0] = new Card('D',1);
+		test.enemy_hand[1] = new Card('S',1);
+		test.enemy_hand[2] = new Card('H',3);
+		test.enemy_hand[3] = new Card('C',4);
+		test.enemy_hand[4] = new Card('S',5);
+		rf=test.ThreeInSequence(test.enemy_hand);
+		er[0]=0;
+		er[1]=1;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Test case 2, the last two cards is needed to be changed (and it is a pair)
+		test.player_hand[0] = new Card('H',2);
+		test.player_hand[1] = new Card('H',3);
+		test.player_hand[2] = new Card('S',4);
+		test.player_hand[3] = new Card('D',6);
+		test.player_hand[4] = new Card('H',6);
+		rf=test.ThreeInSequence(test.player_hand);
+		er[0]=3;
+		er[1]=4;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+
+		//Test case 3, the first one and one card in middle need to be changed
+		test.enemy_hand[0] = new Card('C',2);
+		test.enemy_hand[1] = new Card('D',2);
+		test.enemy_hand[2] = new Card('C',3);
+		test.enemy_hand[3] = new Card('H',3);
+		test.enemy_hand[4] = new Card('C',4);
+		rf=test.ThreeInSequence(test.enemy_hand);
+		er[0]=0;
+		er[1]=2;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
 		
+		//Test case 4, the last one and one card in middle need to be changed
+		test.player_hand[0] = new Card('C',6);
+		test.player_hand[1] = new Card('C',7);
+		test.player_hand[2] = new Card('D',7);
+		test.player_hand[3] = new Card('H',8);
+		test.player_hand[4] = new Card('C',10);
+		rf=test.ThreeInSequence(test.player_hand);
+		er[0]=1;
+		er[1]=4;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
+		
+		//Test case 5, two cards in middle need to be changed
+		test.enemy_hand[0] = new Card('D',6);
+		test.enemy_hand[1] = new Card('D',7);
+		test.enemy_hand[2] = new Card('S',7);
+		test.enemy_hand[3] = new Card('C',8);
+		test.enemy_hand[4] = new Card('H',8);
+		rf=test.ThreeInSequence(test.enemy_hand);
+		er[0]=1;
+		er[1]=3;
+		for(int i = 0; i < er.length;i++) {
+			assertEquals(rf[i],er[i]);
+		}
 	}
 	public void testoneFromRFlush() {
 		Poker test = new Poker();

@@ -414,4 +414,9 @@ public class Poker {
 		}
 		return re;
 	}
+
+	public int[] ThreeInSequence(Card[] in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
