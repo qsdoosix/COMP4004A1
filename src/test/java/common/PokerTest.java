@@ -1558,5 +1558,18 @@ public class PokerTest extends TestCase {
 			//The player win
 			assertEquals(test.winner,0);
 	}
+	public void testCompareHand2() throws IOException {
+		Poker test = new Poker("src/main/resources/Cards4.txt");
+		//Case 10, tests for equal 
+			for(int i = 0;i<20;i++) {
+				test.nextRound();
+				test.compareHand();
+				if(test.card_buffer[test.num_card-1].number==3) {
+					assertEquals(test.winner,0);
+				}else {
+					assertEquals(test.winner,1);
+				}
+			}
+	}
 
 }

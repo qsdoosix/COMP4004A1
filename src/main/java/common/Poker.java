@@ -555,7 +555,6 @@ public class Poker {
 				max=i;
 			}
 		}
-		System.out.println(max);
 		return in[max];
 	}
 	public Card mostCard(Card[] in) {
@@ -563,13 +562,11 @@ public class Poker {
 		int most=12;
 		//Go from large to small
 		for(int i = cardnumbercount.length-1;i>-1;i--) {
-			System.out.println("i= "+i+" cardnumbercount[i] "+cardnumbercount[i]+" cardnumbercount[most] is "+cardnumbercount[most]);
 			if(cardnumbercount[i]>cardnumbercount[most]) {
 				most=i;
 			}
 		}
 		for(int i = in.length-1; i>0;i--) {
-			System.out.println("The most is "+most+" in[i].number is "+in[i].number);
 			if(in[i].number==most+1) {
 				return in[i];
 			}
@@ -578,5 +575,90 @@ public class Poker {
 		return null;
 	}
 	public void compareHand() {
+		int playerS = 0;
+		int enemyS = 0;
+		String list = "SHDC";
+
+		//To analyze the hand of enemy
+		//it can be changed to analyze the hand of player easily
+		Card[] hand = player_hand;
+		Card temp=maxCard(hand);
+		Card max=new Card(temp.color,temp.number);
+		temp=mostCard(hand);
+		Card most = new Card(temp.color,temp.number);
+		if(max.number==1) {
+			max.number=14;//If the max card is Ace, count it as 14 not 1
+		}
+		if(most.number==1) {
+			most.number=14;
+		}
+		if(isRoyalFlush(hand)) {
+			//max.number is less or equal to 14
+			//indexOf(max.color)is less or equal to 4
+			playerS=10000+max.number*10-list.indexOf(max.color);
+		}else if(isStraightFlush(hand)) {
+			playerS=9000+max.number*10-list.indexOf(max.color);
+		}else if(is4oK(hand)) {
+			//Most card means the card with 4 of a kind
+			playerS=8000+most.number*10-list.indexOf(most.color);
+		}else if(isFHouse(hand)) {
+			playerS=7000+most.number*10-list.indexOf(most.color);
+		}else if(isFlush(hand)) {
+			playerS=6000+max.number*10-list.indexOf(max.color);
+		}else if(isStraight(hand)) {
+			playerS=5000+max.number*10-list.indexOf(max.color);
+		}else if(is3oK(hand)) {
+			playerS=4000+most.number*10-list.indexOf(most.color);
+		}else if(is2Pair(hand)) {
+			playerS=3000+most.number*10-list.indexOf(most.color);
+		}else if(isPair(hand)) {
+			playerS=2000+most.number*10-list.indexOf(most.color);
+		}else {
+			playerS=max.number*10-list.indexOf(max.color);
+		}
+
+		hand=enemy_hand;
+		temp=maxCard(hand);
+		max=new Card(temp.color,temp.number);
+		temp=mostCard(hand);
+		most = new Card(temp.color,temp.number);
+		if(max.number==1) {
+			max.number=14;//If the max card is Ace, count it as 14 not 1
+		}
+		if(most.number==1) {
+			most.number=14;
+		}
+		if(isRoyalFlush(hand)) {
+			//max.number is less or equal to 14
+			//indexOf(max.color)is less or equal to 4
+			enemyS=10000+max.number*10-list.indexOf(max.color);
+		}else if(isStraightFlush(hand)) {
+			enemyS=9000+max.number*10-list.indexOf(max.color);
+		}else if(is4oK(hand)) {
+			//Most card means the card with 4 of a kind
+			enemyS=8000+most.number*10-list.indexOf(most.color);
+		}else if(isFHouse(hand)) {
+			enemyS=7000+most.number*10-list.indexOf(most.color);
+		}else if(isFlush(hand)) {
+			enemyS=6000+max.number*10-list.indexOf(max.color);
+		}else if(isStraight(hand)) {
+			enemyS=5000+max.number*10-list.indexOf(max.color);
+		}else if(is3oK(hand)) {
+			enemyS=4000+most.number*10-list.indexOf(most.color);
+		}else if(is2Pair(hand)) {
+			enemyS=3000+most.number*10-list.indexOf(most.color);
+		}else if(isPair(hand)) {
+			enemyS=2000+most.number*10-list.indexOf(most.color);
+		}else {
+			enemyS=max.number*10-list.indexOf(max.color);
+		}
+		System.out.println(playerS+", "+enemyS);
+		if(playerS>enemyS) {
+			winner=0;
+			System.out.println("Player wins!");
+		}else {
+			winner=1;
+			System.out.println("AI Player wins!");
+		}
 	}
 }
