@@ -402,10 +402,12 @@ public class Poker {
 		}
 		for(int i = 0;i<in.length;i++) {
 			if(in[i].color!=maincolor) {
+				//This card is not one of the 3 cards at same color
 				if(reindex==re.length) {
 					//Not supposed to work, but it prevents the error input
 					return wrong;
 				}
+				//Save the index to the return value
 				re[reindex]=i;
 				reindex++;
 			}
