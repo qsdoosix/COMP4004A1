@@ -70,7 +70,8 @@ public class Poker {
 				}
 			enemy_hand=sortArray(enemy_hand);
 			System.out.println("Displaying both player's hand after drawing the card");
-			displayHand();
+			displayHand(false);
+			displayHand(true);
 		}else {
 			System.out.println("No enough cards in the deck to start new round");
 		}
@@ -466,17 +467,20 @@ public class Poker {
 		
 		return re;
 	}
-	public void displayHand() {
-		player_hand=sortArray(player_hand);
-		enemy_hand=sortArray(enemy_hand);
-		System.out.println("Printing player's hand");
-		for(Card c:player_hand) {
-			System.out.print(c+", ");
-		}
-		System.out.println();
-		System.out.println("Printing AIP's hand");
-		for(Card c:enemy_hand) {
-			System.out.print(c+", ");
+	public void displayHand(boolean isEnemy) {
+		if(isEnemy) {
+			enemy_hand=sortArray(enemy_hand);
+			System.out.println();
+			System.out.println("Printing AIP's hand");
+			for(Card c:enemy_hand) {
+				System.out.print(c+", ");
+			}
+		}else{
+			player_hand=sortArray(player_hand);
+			System.out.println("Printing player's hand");
+			for(Card c:player_hand) {
+				System.out.print(c+", ");
+			}
 		}
 		System.out.println();
 	}
@@ -487,8 +491,9 @@ public class Poker {
 		if(isEnemy) {
 			System.out.println("\nAIP is exchanging hands.\n"+cardstoChange+" cards to be dropped:");
 			for(int i = 1;i<in.length;i++) {
-				System.out.println("  "+enemy_hand[in[i]]);
+				System.out.print("  "+enemy_hand[in[i]]);
 				enemy_hand[in[i]]=drawCard();
+				System.out.println(" replaced by "+enemy_hand[in[i]]);
 			}
 			enemy_hand=sortArray(enemy_hand);
 		}else{
@@ -496,8 +501,11 @@ public class Poker {
 			for(int i = 1;i<in.length;i++) {
 				System.out.println("  "+player_hand[in[i]]);
 				player_hand[in[i]]=drawCard();
+				System.out.println(" replaced by "+player_hand[in[i]]);
 			}
 			player_hand=sortArray(player_hand);
 		}
+		System.out.println("\nThe hand after exchanging cards");
+		displayHand(isEnemy);
 	}
 }
