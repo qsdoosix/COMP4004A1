@@ -483,5 +483,21 @@ public class Poker {
 
 	public void changeCard(boolean isEnemy, int[] in) {
 		// TODO Auto-generated method stub
+		int cardstoChange=in[0];
+		if(isEnemy) {
+			System.out.println("\nAIP is exchanging hands.\n"+cardstoChange+" cards to be dropped:");
+			for(int i = 1;i<in.length;i++) {
+				System.out.println("  "+enemy_hand[in[i]]);
+				enemy_hand[in[i]]=drawCard();
+			}
+			enemy_hand=sortArray(enemy_hand);
+		}else{
+			System.out.println("\nPlayer is exchanging hands.\n"+cardstoChange+" cards to be dropped:");
+			for(int i = 1;i<in.length;i++) {
+				System.out.println("  "+player_hand[in[i]]);
+				player_hand[in[i]]=drawCard();
+			}
+			player_hand=sortArray(player_hand);
+		}
 	}
 }
