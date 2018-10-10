@@ -658,17 +658,20 @@ public class PokerTest extends TestCase {
 	}
 
 	//Test cases for get one cards away from something.
+	public void test3inSequence() {
+		
+	}
 	public void testoneFromRFlush() {
 		Poker test = new Poker();
 		int rf;//The result calculated by the method
 		int er;//The expected result
 		//Case 1, Spade Royal flush missing first card
-		test.enemy_hand[0] = new Card('D',5);
-		test.enemy_hand[1] = new Card('S',10);
-		test.enemy_hand[2] = new Card('S',11);
-		test.enemy_hand[3] = new Card('S',12);
-		test.enemy_hand[4] = new Card('S',13);
-		rf=test.oneFromRFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('D',5);
+		test.player_hand[1] = new Card('S',10);
+		test.player_hand[2] = new Card('S',11);
+		test.player_hand[3] = new Card('S',12);
+		test.player_hand[4] = new Card('S',13);
+		rf=test.oneFromRFlush(test.player_hand);
 		er=0;
 		assertEquals(rf,er);
 
@@ -694,12 +697,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf,er);
 
 		//Case 4, Club Royal flush missing one cards in middle equals to other
-		test.enemy_hand[0] = new Card('C',1);
-		test.enemy_hand[1] = new Card('C',10);
-		test.enemy_hand[2] = new Card('H',12);
-		test.enemy_hand[3] = new Card('C',12);
-		test.enemy_hand[4] = new Card('C',13);
-		rf=test.oneFromRFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('C',1);
+		test.player_hand[1] = new Card('C',10);
+		test.player_hand[2] = new Card('H',12);
+		test.player_hand[3] = new Card('C',12);
+		test.player_hand[4] = new Card('C',13);
+		rf=test.oneFromRFlush(test.player_hand);
 		er=2;
 		assertEquals(rf,er);
 		
@@ -724,12 +727,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf,er);
 		
 		//Case 7, Not one from Royal Flush
-		test.enemy_hand[0] = new Card('H',1);
-		test.enemy_hand[1] = new Card('D',5);
-		test.enemy_hand[2] = new Card('S',6);
-		test.enemy_hand[3] = new Card('D',8);
-		test.enemy_hand[4] = new Card('D',13);
-		rf=test.oneFromRFlush(test.enemy_hand);
+		test.player_hand[0] = new Card('H',1);
+		test.player_hand[1] = new Card('D',5);
+		test.player_hand[2] = new Card('S',6);
+		test.player_hand[3] = new Card('D',8);
+		test.player_hand[4] = new Card('D',13);
+		rf=test.oneFromRFlush(test.player_hand);
 		er=-1;
 		assertEquals(rf,er);
 	}
@@ -791,12 +794,12 @@ public class PokerTest extends TestCase {
 		assertEquals(rf,er);
 
 		//Case 6, 2+1+1+1 //Not a full house
-		test.enemy_hand[0] = new Card('S',2);
-		test.enemy_hand[1] = new Card('C',2);
-		test.enemy_hand[2] = new Card('H',3);
-		test.enemy_hand[3] = new Card('D',4);
-		test.enemy_hand[4] = new Card('C',5);
-		rf=test.onefromFHouse(test.enemy_hand);
+		test.player_hand[0] = new Card('S',2);
+		test.player_hand[1] = new Card('C',2);
+		test.player_hand[2] = new Card('H',3);
+		test.player_hand[3] = new Card('D',4);
+		test.player_hand[4] = new Card('C',5);
+		rf=test.onefromFHouse(test.player_hand);
 		er=-1;
 		assertEquals(rf,er);
 	}
@@ -819,12 +822,12 @@ public class PokerTest extends TestCase {
 		}
 		
 		//Test case 2, the last two cards is needed to be changed
-		test.enemy_hand[0] = new Card('S',4);
-		test.enemy_hand[1] = new Card('S',7);
-		test.enemy_hand[2] = new Card('S',9);
-		test.enemy_hand[3] = new Card('H',10);
-		test.enemy_hand[4] = new Card('D',11);
-		rf=test.change3oS(test.enemy_hand);
+		test.player_hand[0] = new Card('S',4);
+		test.player_hand[1] = new Card('S',7);
+		test.player_hand[2] = new Card('S',9);
+		test.player_hand[3] = new Card('H',10);
+		test.player_hand[4] = new Card('D',11);
+		rf=test.change3oS(test.player_hand);
 		er[0]=3;
 		er[1]=4;
 		for(int i = 0; i < er.length;i++) {
@@ -965,22 +968,22 @@ public class PokerTest extends TestCase {
 		assertEquals(er,rf);
 		
 		//Case 3, the last card is missing
-		test.enemy_hand[0] = new Card('D',6);
-		test.enemy_hand[1] = new Card('D',7);
-		test.enemy_hand[2] = new Card('D',8);
-		test.enemy_hand[3] = new Card('D',9);
-		test.enemy_hand[4] = new Card('H',12);
-		rf=test.onefromFS(test.enemy_hand);
+		test.player_hand[0] = new Card('D',6);
+		test.player_hand[1] = new Card('D',7);
+		test.player_hand[2] = new Card('D',8);
+		test.player_hand[3] = new Card('D',9);
+		test.player_hand[4] = new Card('H',12);
+		rf=test.onefromFS(test.player_hand);
 		er=4;
 		assertEquals(er,rf);
 
 		//Case 4, missing one card in middle.
-		test.enemy_hand[0] = new Card('H',3);
-		test.enemy_hand[1] = new Card('H',4);
-		test.enemy_hand[2] = new Card('H',6);
-		test.enemy_hand[3] = new Card('H',7);
-		test.enemy_hand[4] = new Card('D',13);
-		rf=test.onefromFS(test.enemy_hand);
+		test.player_hand[0] = new Card('H',3);
+		test.player_hand[1] = new Card('H',4);
+		test.player_hand[2] = new Card('H',6);
+		test.player_hand[3] = new Card('H',7);
+		test.player_hand[4] = new Card('D',13);
+		rf=test.onefromFS(test.player_hand);
 		er=4;
 		assertEquals(er,rf);
 		
