@@ -157,6 +157,7 @@ public class Poker {
 				return re;
 			}
 		}
+		return null;
 	}
 	public boolean isRoyalFlush(Card[] in) {
 		// TODO Auto-generated method stub
