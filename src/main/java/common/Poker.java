@@ -504,6 +504,8 @@ public class Poker {
 		displayHand(isEnemy);
 	}
 	public int[] findSingle(Card[] in) {
+		//This method is to find the single (not in pair) cards in the input
+		//The input must be sorted.
 		int[] re = {-1,-1,-1,-1};
 		if(is2Pair(in)) {
 			countCard(in);
