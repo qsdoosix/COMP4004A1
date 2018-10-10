@@ -1451,7 +1451,7 @@ public class PokerTest extends TestCase {
 	}
 	public void testAnalyse() throws IOException {	
 		Poker test = new Poker("src/main/resources/Cards2.txt");
-		int numtests=41;
+		int numtests=35;
 		//Case 1, AIP get 1 card away from Royal Flush
 		System.out.println("\nTesting hand analyzer");
 		//The analyzer will read card for both player and make decisions then determine the winner.
@@ -1466,7 +1466,7 @@ public class PokerTest extends TestCase {
 				if(er[a]==10) {
 					er[a]=0;
 				}
-				System.out.println("at "+a);
+				System.out.println("at "+a+", "+test.card_buffer[test.num_card-4+a]);
 				assertEquals(er[a],ar[a]);
 			}
 		}
