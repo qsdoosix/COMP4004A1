@@ -384,6 +384,32 @@ public class Poker {
 
 	public int[] change3oS(Card[] in) {
 		// TODO Auto-generated method stub
-		return null;
+		countCard(in);
+		char maincolor='N';
+		int[] wrong = {-1,-1};
+		int[] re= new int[2];
+		int reindex=0;
+		String list= "SHDC";
+		for(int i = 0; i<cardcolorcount.length;i++) {
+			if(cardcolorcount[i]==3) {
+				//Look for the color with exactly 3 cards
+				maincolor=list.charAt(i);
+			}
+		}
+		if(maincolor=='N') {
+			//There isn't a color have 3 cards. So it's not what we are looking for
+			return wrong;
+		}
+		for(int i = 0;i<in.length;i++) {
+			if(in[i].color!=maincolor) {
+				if(reindex==re.length) {
+					//Not supposed to work, but it prevents the error input
+					return wrong;
+				}
+				re[reindex]=i;
+				reindex++;
+			}
+		}
+		return re;
 	}
 }
